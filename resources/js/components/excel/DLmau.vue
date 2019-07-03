@@ -10,8 +10,8 @@
         <VCardText>
           <HideColumns
             v-if="data.length"
-            :columns="[3,4,5,6,7,8]"
-            @setColumnHide="val => hideCol = val"
+            :columns="hideCol"
+            @setColumnHide="setColumnHide"
           />
           <Handsontable
             v-if="data.length"
@@ -54,7 +54,7 @@ export default {
       data: [],
       baseURL: "/api/excel/data",
       keyUpload: 0,
-      hideCol: "",
+      hideCol: [3,4,5,6,7,8],
       fixedColumnsLeft: 1,
       cells: function(row, col, prop) {
         // something code here
@@ -329,7 +329,24 @@ export default {
     },
     afterRemoveRow() {
       this.$toast.success("Xóa hàng thành công");
-    }
+    },
+    setColumnHide(val) {
+      console.log()
+      let hot = this.$refs.handsontable.$refs.hot.hotInstance
+      val.length
+        ? hot.updateSettings({
+            hiddenColumns: {
+              columns: val,
+              indicators: true
+            }
+          })
+        : hot.updateSettings({
+            hiddenColumns: {
+              columns: val,
+              indicators: false
+            }
+          })
+    },
   }
 };
 </script>

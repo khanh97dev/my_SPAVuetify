@@ -1,5 +1,5 @@
 <template>
-	<VSwitch label="Ẩn cột:" v-model="model" color="blue darken-1"></VSwitch>
+	<VSwitch label="Ẩn Cột Không Cần Thiết" v-model="model" color="blue darken-1"></VSwitch>
 </template>
 <script>
 export default {
@@ -13,9 +13,6 @@ export default {
 			return val
 		},
 	},
-	mounted () {
-		this.setColumnHide(this.columns)
-	},
 	data() {
 		return {
 			model: true
@@ -28,7 +25,7 @@ export default {
 	},
 	methods: {
 		setColumnHide(val) {
-			this.$emit('setColumnHide', val) 
+			this.$emit('setColumnHide', val)
 		}
 	},
 }

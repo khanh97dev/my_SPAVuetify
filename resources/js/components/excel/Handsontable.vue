@@ -3,10 +3,13 @@
   overflow: auto;
   height: 100vh !important;
   width: 100% !important;
-  padding: 1px;
+  padding: 0;
 }
 #handsontable [id*="hot"] {
   box-shadow: 2px 1px #ccc;
+}
+.ht_master{
+  overflow: unset !important;
 }
 [id*="ht_"] div.ht_master.handsontable > div {
   height: 80px !important;
@@ -21,6 +24,13 @@
 .handsontable table > tbody > tr:first-child div,
 .handsontable table > tbody > tr:first-child label {
   font-weight: normal;
+}
+.handsontable td.area.htDimmed{
+  font-size: small !important;
+  line-height: 16px !important;
+}
+.handsontable textarea{
+  height: 52px !important;
 }
 .handsontable .htUIClearAll a,
 .handsontable .htUISelectAll a,
@@ -47,16 +57,15 @@
 .handsontable th.afterHiddenColumn::before {
   color: black !important;
 }
-.htDatepickerHolder{
-  /* right: 50% !important; */
-  /* left: auto !important */
+.handsontable .autocompleteEditor.handsontable{
+  top: unset !important
 }
 </style>
 <template>
   <div id="handsontable">
     <template v-if="data" name="fade" mode="out-in">
       <v-layout row>
-        <v-flex md3 xs6>
+        <v-flex md3 xs6 v-if="showExportExcel">
           <v-btn color="info" @click="exportExcel">Xuất Excel</v-btn>
         </v-flex>
         <v-flex md3 xs6 v-if="isDelData">
@@ -171,9 +180,10 @@ export default {
           }
         },
         // event handsontable
-        afterSetDataAtCell: function(changes) {
+        afterSetDataAtCell: function(array) {
           let Vue = this.rootElement.__vue__;
-          Vue.$emit("afterSetDataAtCell", changes);
+          Vue.$root.$emit('afterSetDataAtCell', array)
+          Vue.$emit("afterSetDataAtCell", array);
         },
         afterRemoveRow: function(index, amount, physicalRows) {
           let Vue = this.rootElement.__vue__;
@@ -252,9 +262,16 @@ export default {
     },
     fixedColumnsLeft: {
       default: () => 0
+    },
+    showExportExcel:{
+      default: () => true
+    },
+    registerHandsontable: {
+      default:() => () => {}
     }
   },
   created: function() {
+    Handsontable.renderers.registerRenderer('renderCellCustom', this.registerHandsontable)
     this.key += 1;
     if (this.changeTable)
       setTimeout(() => {
@@ -267,6 +284,7 @@ export default {
   methods: {
     exportExcel() {
       let hot = this.$refs.hot;
+      window.hot = hot
       let exportPlugin1 = hot.hotInstance.getPlugin("exportFile");
       exportPlugin1.downloadFile("csv", {
         columnDelimiter: ",",

@@ -57,7 +57,6 @@
   </div>
 </template>
 <script>
-import { log } from 'util';
 export default {
   components: {
     'Handsontable': require("../Handsontable").default
@@ -125,13 +124,13 @@ export default {
 					return item.forEach( (data) => {
 						// data.splice(posRemove, 1) // position 3 doanh thu
 						if(index){
-              let indexAdd = index * 2  
+              let indexAdd = index * 2
               data[2 + indexAdd] = data[2]
               data[3 + indexAdd] = data[3]
 							delete data[2]
 							delete data[3]
             }
-						return data 
+						return data
 					})
 				});
 			}).then( () => {
