@@ -131,7 +131,7 @@ export default {
         150, 80, 80, // Trạng thái, Ngày NVC giao BT, Ngày xử lý gần nhất,
         30, 30, 30, // l1, l2, l3
         220, 80, 120, // Tình trạng, Ngày kiểm tra hoàn, Ngày NVC báo trả nhưng chưa nhận,
-        80, 180, 100, 50, 100 // Ngày xử lý tiếp, Ghi chú, Kết quả xử lý, Lưu tạm, Người cập nhật cuối
+        80, 180, 100, 70, 100 // Ngày xử lý tiếp, Ghi chú, Kết quả xử lý, Lưu tạm, Người cập nhật cuối
       ],
       columns: false,
       mergeCells: [
@@ -196,9 +196,9 @@ export default {
                 name => name === nameDataNVC
               );
               let linkNVC = getListNVC.link[indexNVC];
-              td.style.textAlign = "center";
+              td.style.fontSize = "smaller";
               return (td.innerHTML = `
-								<a target="_blank" href="${linkNVC + MVD}"> ${nameDataNVC} + ${MVD}</a>
+								<a target="_blank" href="${linkNVC + MVD}"> ${nameDataNVC}</a>
 							`);
             } else {
               td.style.backgroundColor = "#ddd";
@@ -220,9 +220,9 @@ export default {
             let LinkMySapo = configCell.find(obj => obj.key === "LinkMySapo")
               .link;
             if (MVD) {
-              td.style.textAlign = "center";
+              td.style.fontStyle = 'smaller'
               return (td.innerHTML = `
-								<a target="_blank" href="${LinkMySapo + MVD}"> My sapo + ${MVD}</a>
+								<a target="_blank" href="${LinkMySapo + MVD}"> My sapo</a>
 							`);
             } else {
               td.style.backgroundColor = "#ddd";
@@ -411,12 +411,17 @@ export default {
       let hot = this.$refs.handsontable.$refs.hot;
       let hotInstance = hot.hotInstance;
       let getColMVD = hotInstance.getDataAtCol(0)
-      if(getColMVD.length && getColMVD.includes('newVal'))
+      if(getColMVD.length && getColMVD.includes(newVal)){
         this.$toast.error('Trùng')
+        setTimeout(() => {
+          return hotInstance.setDataAtCell(row, 0, '😈Trùng😈');
+        }, 50)
+      }
       let getLuuTam = hotInstance.getDataAtCell(row, 17);
       let username = localStorage.getItem('username') ? localStorage.getItem('username') : '...other'
       hotInstance.setDataAtCell(row, 18, username);
       if(!getLuuTam) hotInstance.setDataAtCell(row, 17, 'Không');
+      return this.updateData(hotInstance.getData())
     },
     handleUsername(){
       let getUsername = this.modelUsername
