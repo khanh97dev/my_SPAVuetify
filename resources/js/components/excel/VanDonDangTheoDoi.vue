@@ -9,7 +9,8 @@
       :columns="columns"
       :mergeCells="mergeCells"
       :colWidths="colWidths"
-      :colHeaders="true"
+      :colHeaders="colHeaders"
+      :columnHeaderHeight="columnHeaderHeight"
       :showReadOnly="true"
       :showExportExcel="false"
       :hiddenRows="false"
@@ -128,57 +129,25 @@ export default {
       keyHandsontable: 0,
       colWidths: [
         120, 100, 120, 90, 120, // Mã vận đơn, SĐT khách, Link sapo, NVC, Link vận chuyển
-        150, 80, 80, // Trạng thái, Ngày NVC giao BT, Ngày xử lý gần nhất,
+        150, 120, 80, // Trạng thái, Ngày NVC giao BT, Ngày xử lý gần nhất,
         30, 30, 30, // l1, l2, l3
-        220, 80, 120, // Tình trạng, Ngày kiểm tra hoàn, Ngày NVC báo trả nhưng chưa nhận,
-        80, 180, 100, 70, 100 // Ngày xử lý tiếp, Ghi chú, Kết quả xử lý, Lưu tạm, Người cập nhật cuối
+        220, 100, 120, // Tình trạng, Ngày kiểm tra hoàn, Ngày NVC báo trả nhưng chưa nhận,
+        80, 180, 200, 70, 100 // Ngày xử lý tiếp, Ghi chú, Kết quả xử lý, Lưu tạm, Người cập nhật cuối
+      ],
+      columnHeaderHeight: 90,
+      colHeaders: [
+        'Mã vận đơn', 'SĐT Khách', 'Link Sapo',
+        'NVC', 'Link VC', 'Trạng thái',
+        'Ngày NVC <br> giao BT <br><b>Chưa giao được</b>', 'Ngày NVC <br> giao BT', 'L1', 'L2', 'L3', 'Tình trạng<br><b>Chưa giao được</b>', //Chưa giao được
+        'Ngày kiểm <br> tra hoàn <br> <b>Đang hoàn</b>', 'Ngày NVC <br> báo trả nhưng <br> chưa nhận <br><b>Đang hoàn</b>', // Đang hoàn
+        'Ngày xử <br> lý tiếp', 'Ghi chú', 'Kết quả xử lý', 'Lưu tạm', 'Người cập <br> nhật cuối'
       ],
       columns: false,
-      mergeCells: [
-        { row: 0, col: 0, rowspan: 2, colspan: 1 },
-        { row: 0, col: 1, rowspan: 2, colspan: 1 },
-        { row: 0, col: 2, rowspan: 2, colspan: 1 },
-        { row: 0, col: 3, rowspan: 2, colspan: 1 },
-        { row: 0, col: 4, rowspan: 2, colspan: 1 },
-        { row: 0, col: 5, rowspan: 2, colspan: 1 },
-        { row: 0, col: 6, rowspan: 1, colspan: 6 },
-        { row: 0, col: 12, rowspan: 1, colspan: 2 },
-        { row: 0, col: 14, rowspan: 2, colspan: 1 },
-        { row: 0, col: 15, rowspan: 2, colspan: 1 },
-        { row: 0, col: 16, rowspan: 2, colspan: 1 },
-        { row: 0, col: 17, rowspan: 2, colspan: 1 },
-        { row: 0, col: 18, rowspan: 2, colspan: 1 }
-      ],
+      mergeCells: false,
       cells: function(row, col, prop) {
         let hot = this.instance
-        // something code here
-        if (
-          row === 0 ||
-          (col === 6 && row === 1) ||
-          (col === 7 && row === 1) ||
-          (col === 8 && row === 1) ||
-          (col === 9 && row === 1) ||
-          (col === 10 && row === 1) ||
-          (col === 11 && row === 1) ||
-          (col === 12 && row === 1) ||
-          (col === 13 && row === 1)
-        ) {
-          this.renderer = function(
-            instance,
-            td,
-            row,
-            col,
-            prop,
-            value,
-            cellProperties
-          ) {
-            cellProperties.readOnly = true;
-            td.style.textAlign = "center";
-            return (td.textContent = value);
-          };
-        }
         // handle link NVC
-        if (col === 4 && row > 0) {
+        if (col === 4) {
           this.renderer = function(
             instance,
             td,
@@ -195,8 +164,8 @@ export default {
               let indexNVC = getListNVC.name.findIndex(
                 name => name === nameDataNVC
               );
+              td.style.textAlign = 'center'
               let linkNVC = getListNVC.link[indexNVC];
-              td.style.fontSize = "smaller";
               return (td.innerHTML = `
 								<a target="_blank" href="${linkNVC + MVD}"> ${nameDataNVC}</a>
 							`);
@@ -206,7 +175,7 @@ export default {
             return (cellProperties.readOnly = true);
           };
         }
-        if (col === 2 && row > 0) {
+        if (col === 2) {
           this.renderer = function(
             instance,
             td,
@@ -220,7 +189,7 @@ export default {
             let LinkMySapo = configCell.find(obj => obj.key === "LinkMySapo")
               .link;
             if (MVD) {
-              td.style.fontStyle = 'smaller'
+              td.style.textAlign = 'center'
               return (td.innerHTML = `
 								<a target="_blank" href="${LinkMySapo + MVD}"> My sapo</a>
 							`);
@@ -231,7 +200,7 @@ export default {
           };
         }
         // handle Lưu
-        if( row > 0 && col !== 17){
+        if(col !== 17){
           let getLuuTam = hot.getDataAtCell(row, 17)
           let countCols = hot.countCols()
           var cellProperties = {};
@@ -322,51 +291,13 @@ export default {
         });
     },
     createData() {
-      this.data = [
-        [
-          "Mã vận đơn",
-          "SĐT Khách",
-          "Link Sapo",
-          "NVC",
-          "Link VC",
-          "Trạng thái",
-          "Chưa giao được",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "Đang hoàn",
-          "",
-          "Ngày xử lý tiếp",
-          "Ghi chú",
-          "Kết quả xử lý",
-          "Lưu tạm",
-          "Người cập nhật cuối"
-        ],
-        [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "Ngày NVC giao BT",
-          "Ngày xử lý gần nhất",
-          "L1",
-          "L2",
-          "L3",
-          "Tình trạng",
-          "Ngày kiểm tra hoàn",
-          "Ngày NVC báo trả nhưng chưa nhận"
-        ]
-      ];
-      this.data[2] = [];
-      for (let i = 0; i < this.colWidths.length; i++) this.data[2].push("");
+      this.data[0] = [];
+      for (let i = 0; i < this.colWidths.length; i++) this.data[0].push("");
       this.keyHandsontable += 1;
       this.$toast.success("Khởi tạo dữ liệu thành công!");
     },
-    updateData(val) {
+    updateData(val, isUpdate = true) {
+      if(!isUpdate) return;
       let id = this.id;
       let jsonString = JSON.stringify(val);
       let check_update = 1;
@@ -412,16 +343,16 @@ export default {
       let hotInstance = hot.hotInstance;
       let getColMVD = hotInstance.getDataAtCol(0)
       if(getColMVD.length && getColMVD.includes(newVal)){
-        this.$toast.error('Trùng')
         setTimeout(() => {
-          return hotInstance.setDataAtCell(row, 0, '😈Trùng😈');
+          hotInstance.setDataAtCell(row, 0, '😈Trùng😈');
         }, 50)
+        return this.$toast.error('Trùng')
       }
       let getLuuTam = hotInstance.getDataAtCell(row, 17);
       let username = localStorage.getItem('username') ? localStorage.getItem('username') : '...other'
       hotInstance.setDataAtCell(row, 18, username);
       if(!getLuuTam) hotInstance.setDataAtCell(row, 17, 'Không');
-      return this.updateData(hotInstance.getData())
+      return this.updateData(hotInstance.getData(), false)
     },
     handleUsername(){
       let getUsername = this.modelUsername

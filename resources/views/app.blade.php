@@ -6,7 +6,7 @@
         <meta name="author" content="Vitaly Kasymov">
         <meta name="description" content="">
 
-        <title>Quản lý excel | Đồ sáng tạo</title>
+        <title>TEST Quản lý excel | Đồ sáng tạo</title>
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel="stylesheet">
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet">

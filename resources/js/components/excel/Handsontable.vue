@@ -21,6 +21,10 @@
 .ht_master .wtHolder {
   padding-bottom: 16px;
 }
+.handsontable span.colHeader{
+  padding-top: 12px;
+  line-height: 1.3 !important
+}
 .handsontable table > tbody > tr:first-child div,
 .handsontable table > tbody > tr:first-child label {
   font-weight: normal;
@@ -102,6 +106,7 @@
           :filters="true"
           :columnSorting="true"
           :colHeaders="colHeaders"
+          :columnHeaderHeight="columnHeaderHeight"
           :comments="true"
           :readOnly="readOnly"
           :mergeCells="mergeCells"
@@ -233,6 +238,9 @@ export default {
     colHeaders: {
       default: () => []
     },
+    columnHeaderHeight: {
+      default: () => false
+    },
     mergeCells: {
       default: () => []
     },
@@ -317,7 +325,7 @@ export default {
       }, 100);
     },
     afterSetDataAtCell: function(val) {
-      if (!val.length) return;
+      if (!val.length || !this.colUpdate) return;
       let hot = this.$refs.hot;
       let hotInstance = hot.hotInstance;
       let row = val[0][0],

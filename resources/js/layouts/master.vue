@@ -77,7 +77,7 @@
         </v-list>
       </v-navigation-drawer>
       <v-toolbar
-        color="blue darken-3"
+        color="red darken-2"
         dark
         app
         absolute
@@ -116,7 +116,7 @@ import { log } from 'util';
           if ( window.scrollY != 0 ) {
               window.scrollBy( 0, scrollStep );
           }
-          else clearInterval(scrollInterval); 
+          else clearInterval(scrollInterval);
         },15);
         // return window.scrollTo(0, 0)
       }
