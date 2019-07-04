@@ -1,4 +1,7 @@
 <style scope>
+#hot-display-license-info {
+  display: none;
+}
 #handsontable {
   overflow: auto;
   height: 100vh !important;
@@ -40,9 +43,6 @@
 .handsontable .htUISelectAll a,
 .handsontable .htFiltersMenuValue .htUIMultipleSelectSearch input {
   font-size: 16px !important;
-}
-#hot-display-license-info {
-  display: none;
 }
 .filterHeader input {
   background-color: #fff;
