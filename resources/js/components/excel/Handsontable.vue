@@ -79,6 +79,7 @@
         <v-flex md3 xs6 v-if="showExportExcel">
           <v-btn color="info" @click="exportExcel">Xuất Excel</v-btn>
         </v-flex>
+        <slot/>
         <v-flex md3 xs6 v-if="isDelData">
           <v-btn color="error" @click="delData">Xóa dữ liệu</v-btn>
         </v-flex>
@@ -233,13 +234,13 @@ export default {
     cells: {
       default: () => {}
     },
+    changeTable: {
+      default: () => []
+    },
     hiddenRows: {
       default: () => ({
         rows: [0]
       })
-    },
-    changeTable: {
-      default: () => []
     },
     hideCol: {
       default: () => []

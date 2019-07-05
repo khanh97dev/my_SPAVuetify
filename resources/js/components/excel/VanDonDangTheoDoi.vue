@@ -19,6 +19,7 @@ div.handsontable > div > div > div > table > tbody > tr > td:nth-child(2) {
       :fixedColumnsLeft="fixedColumnsLeft"
       :showExportExcel="false"
       :hiddenRows="false"
+      :hideCol="[1]"
       :isDelData="false"
       @delData="delData"
       @updateData="updateData"
@@ -129,11 +130,11 @@ export default {
       fixedColumnsLeft: 1,
       keyHandsontable: 0,
       colWidths: [
-        120, 100, 120, 90, 120, // Mã vận đơn, SĐT khách, Link sapo, NVC, Link vận chuyển
-        150, 120, 80, // Trạng thái, Ngày NVC giao BT, Ngày xử lý gần nhất,
-        30, 30, 30, // l1, l2, l3 220,
-        100, 120, // Tình trạng, Ngày kiểm tra hoàn, Ngày NVC báo trả nhưng chưa nhận, 80,
-        180, 200, 70, 100 // Ngày xử lý tiếp, Ghi chú, Kết quả xử lý, Lưu tạm, Người cập nhật cuối
+        120, 100, 55, 90, 70, // Mã vận đơn, SĐT khách, Link sapo, NVC, Link VC
+        150, 93, 93, // Trạng thái, Ngày NVC giao BT, Ngày xử lý gần nhất,
+        30, 30, 30, // l1, l2, l3
+        185, 93, 93, // Tình trạng, Ngày bắt đầu hoàn, Ngày NVC báo trả nhưng chưa nhận,
+        93, 200, 200, 70, 40 // Ngày xử lý tiếp, Ghi chú, Kết quả xử lý, Lưu tạm, Người cập nhật cuối
       ],
       columnHeaderHeight: 90,
       colHeaders: [

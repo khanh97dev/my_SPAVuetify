@@ -23,6 +23,8 @@ axios.interceptors.response.use(response => {
 }, async error => {
   if (store.getters['auth/token']) {
     // TODO: Find more reliable way to determine when Token state
+    console.log('error.response', error.response.status)
+    if (error.response) return;
     if (error.response.status === 401 && error.response.data.message === 'Token has expired') {
       const { data } = await axios.post(api.path('login.refresh'))
       store.dispatch('auth/saveToken', data)

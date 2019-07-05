@@ -3,7 +3,8 @@ import Vue from 'vue'
 let components = [
 	'ButtonUpdate.vue',
 	'HideColumns.vue',
-	'VueUpload.vue'
+	'VueUpload.vue',
+  'DialogConfirmName.vue'
 ]
 
 components.forEach( item => {

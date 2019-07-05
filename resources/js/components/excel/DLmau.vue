@@ -6,6 +6,10 @@
           <VFlex xs6>
             <ImportExcel @uploaded="handleData" />
           </VFlex>
+          <v-flex md4 xs6>
+            <v-btn color="success" @click="dialog = true">Lưu dữ liệu đã lọc</v-btn>
+            <DialogConfirmName :dialog="dialog" @dialogClose="() => dialog = false" @done="saveFiltered" />
+          </v-flex>
         </VCardTitle>
         <VCardText>
           <HideColumns
@@ -35,7 +39,8 @@
             @delData="delData"
             @updateData="updateData"
             @afterRemoveRow="afterRemoveRow"
-          />
+          >
+          </Handsontable>
         </VCardText>
       </VCard>
     </v-container>
@@ -54,6 +59,7 @@ export default {
       data: [],
       baseURL: "/api/excel/data",
       keyUpload: 0,
+      dialog: false,
       hideCol: [3,4,5,6,7,8],
       fixedColumnsLeft: 1,
       cells: function(row, col, prop) {
@@ -331,7 +337,6 @@ export default {
       this.$toast.success("Xóa hàng thành công");
     },
     setColumnHide(val) {
-      console.log()
       let hot = this.$refs.handsontable.$refs.hot.hotInstance
       val.length
         ? hot.updateSettings({
@@ -346,6 +351,19 @@ export default {
               indicators: false
             }
           })
+    },
+    saveFiltered(name){
+      if(!name) return
+      this.dialog = false
+      // let handsontable = this.$refs.handsontable
+      // let hotInstance = handsontable.$refs.hot.hotInstance
+      // let getDataFilter = hotInstance.getData(); // return array
+      // getDataFilter.forEach(item => {
+      //   item.splice(2, 35)
+      //   return setTimeout( () => {
+      //     item.splice(5, 1)
+      //   }, 10)
+      // })
     },
   }
 };

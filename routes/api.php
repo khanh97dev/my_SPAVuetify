@@ -260,7 +260,7 @@ Route::group(['prefix' => 'filter-excel'], function() {
 });
 
 
-Route::group(['middleware' => ['guest:api']], function() {
+Route::group(['middleware' => ['guest:api', 'cors']], function() {
     Route::post('login', 'Auth\LoginController@login');
     Route::post('login/refresh', 'Auth\LoginController@refresh');
 
@@ -270,7 +270,7 @@ Route::group(['middleware' => ['guest:api']], function() {
     Route::post('register', 'Auth\RegisterController@register');
 });
 
-Route::group(['middleware' => ['jwt']], function() {
+Route::group(['middleware' => ['jwt', 'cors']], function() {
     Route::post('logout', 'Auth\LoginController@logout');
 
     Route::get('me', 'Auth\LoginController@me');
