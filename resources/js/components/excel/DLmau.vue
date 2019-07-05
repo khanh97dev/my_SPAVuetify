@@ -352,18 +352,30 @@ export default {
             }
           })
     },
+    getDataFilter(){
+      let handsontable = this.$refs.handsontable
+      let hotInstance = handsontable.$refs.hot.hotInstance
+      let getDataFilter = hotInstance.getData(); // return array
+      getDataFilter.forEach(item => {
+        item.splice(2, 35)
+        return setTimeout( () => {
+          item.splice(5, 1)
+        }, 10)
+      })
+      return getDataFilter
+    },
     saveFiltered(name){
       if(!name) return
       this.dialog = false
-      // let handsontable = this.$refs.handsontable
-      // let hotInstance = handsontable.$refs.hot.hotInstance
-      // let getDataFilter = hotInstance.getData(); // return array
-      // getDataFilter.forEach(item => {
-      //   item.splice(2, 35)
-      //   return setTimeout( () => {
-      //     item.splice(5, 1)
-      //   }, 10)
-      // })
+      let getDataFilter = this.getDataFilter()
+      let jsonString = JSON.stringify(getDataFilter)
+      let data = {
+        title: name,
+        json: jsonString
+      }
+      axios.post('/api/filter-excel/create', data).then( resposne => {
+        this.$toast.success('Thành công')
+      }).catch( () => this.$toast.error('Lỗi') )
     },
   }
 };
