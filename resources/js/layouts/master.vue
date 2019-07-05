@@ -77,7 +77,7 @@
         </v-list>
       </v-navigation-drawer>
       <v-toolbar
-        color="red darken-2"
+        color="blue darken-2"
         dark
         app
         absolute

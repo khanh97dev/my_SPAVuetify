@@ -3,7 +3,7 @@
   display: none;
 }
 #handsontable {
-  overflow: auto;
+  overflow: hidden;
   height: 100vh !important;
   width: 100% !important;
   padding: 0;
@@ -32,8 +32,15 @@
 .handsontable table > tbody > tr:first-child label {
   font-weight: normal;
 }
-.handsontable td.area.htDimmed{
+.handsontable tbody:after {
+    content: '';
+    width: 1px;
+    height: 16px;
+    position: absolute;
+}
+.handsontable td{
   font-size: small !important;
+  padding-top: 2px !important;
   line-height: 16px !important;
 }
 .handsontable textarea{
@@ -101,6 +108,8 @@
           :autoColumnSize="false"
           :autoRowSize="false"
           :rowHeights="35"
+          :manualColumnResize="true"
+          :manualRowResize="true"
           :fixedColumnsLeft="fixedColumnsLeft"
           :dropdownMenu="['filter_by_value', 'filter_action_bar']"
           :filters="true"
@@ -149,7 +158,7 @@ export default {
         contextMenu: {
           items: {
             remove_row: {
-              name: "Xóa hàng"
+              name: "<b class=\"red--text\"> Xóa hàng </b>"
             },
             clear_custom: {
               name: "Chọn tất cả",

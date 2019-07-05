@@ -27,7 +27,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    
     <VCard>
       <VCardText>
         <vContainer>

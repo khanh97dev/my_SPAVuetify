@@ -1,12 +1,14 @@
 /node_modules
 /public/hot
 /public/storage
-/public/css
-/public/js
 /storage/
 /vendor
 /.idea
 /.vagrant
+# file default
+app.blade.php
+layouts/*.vue
+# file default
 Homestead.json
 Homestead.yaml
 npm-debug.log
