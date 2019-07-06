@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@handsontable/vue": "^4.0.0",
+    "@riophae/vue-treeselect": "0.0.38",
     "awesome-notifications": "^3.0.3",
     "handsontable": "^7.1.0",
     "vue-awesome-notifications": "^3.0.3",

@@ -151,7 +151,6 @@ export default {
     this.fetchData().then( () => {
       setTimeout(() => {
         this.hotInstance = this.$refs.handsontable.$refs.hot.hotInstance
-        console.log('hotInstance', this.hotInstance)
       }, 600)
     });
   },

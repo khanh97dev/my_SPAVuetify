@@ -212,7 +212,7 @@ Route::group(['prefix' => 'filter-excel'], function () {
     });
 
     Route::post('listdata', function (Request $request) use ($table) {
-        $getData = DB::table($table)->get(['id', 'title', 'created_at']);
+        $getData = DB::table($table)->get(['id', 'title', 'json', 'created_at']);
         if (!$getData) {
             return response()->json(null, 404);
         }

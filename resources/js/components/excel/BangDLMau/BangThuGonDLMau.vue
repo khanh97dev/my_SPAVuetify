@@ -8,6 +8,7 @@
     :hiddenRows="0"
     :columns="columns"
     :width="'100%'"
+    :showReadOnly="false"
   ></Handsontable>
 </template>
 <script>
