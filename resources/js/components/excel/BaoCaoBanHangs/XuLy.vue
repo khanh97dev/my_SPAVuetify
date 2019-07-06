@@ -39,9 +39,6 @@
 <script>
 import { setTimeout } from 'timers';
 export default {
-  components: {
-    Handsontable: require("../Handsontable").default
-  },
   data: () => ({
     id: 31,
     data: [],

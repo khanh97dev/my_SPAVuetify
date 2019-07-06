@@ -30,9 +30,6 @@
 </template>
 <script>
 export default {
-  components: {
-    Handsontable: require("./Handsontable").default
-  },
   data() {
     return {
       id: 50,
@@ -113,11 +110,11 @@ export default {
       ],
       colWidths: [
         180, 210,
-        100, 100, 75, 75, 
-        100, 100, 75, 75, 
-        100, 100, 75, 75, 
-        100, 100, 75, 75, 
-        100, 100, 75, 75, 
+        100, 100, 75, 75,
+        100, 100, 75, 75,
+        100, 100, 75, 75,
+        100, 100, 75, 75,
+        100, 100, 75, 75,
         100
       ],
       width: "100%"
@@ -128,7 +125,7 @@ export default {
       if( index === 3 || index === 7 || index === 11 || index === 15 || index === 19 ){
           item.renderer = function(instance, td, row, col, prop, value, cellProperties) {
             if(value.length === 0 || !value.includes('http')) return td.textContent = value
-            return td.innerHTML = `<a class="primary--text" target="_blank" href="${value}">${value}</a>` 
+            return td.innerHTML = `<a class="primary--text" target="_blank" href="${value}">${value}</a>`
           }
         }
     })

@@ -50,6 +50,9 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  components: {
+    ImportExcel: require("./ImportExcel.vue").default,
+  },
   watch: {
     getHideCol(val) {
       var arr1 = this.colFirst;
@@ -76,10 +79,6 @@ export default {
   computed: mapGetters({
     data: "excel/data"
   }),
-  components: {
-    ImportExcel: require("./ImportExcel.vue").default,
-    Handsontable: require("./Handsontable.vue").default
-  },
   mounted() {
     this.$store.dispatch("excel/fetchData", this.id).then(() => {
       this.commitHandsontable(this.data);

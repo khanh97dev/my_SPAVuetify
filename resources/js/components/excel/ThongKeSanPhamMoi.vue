@@ -70,7 +70,6 @@ export default {
   },
   components: {
     ImportExcel: require("./ImportExcel.vue").default,
-    Handsontable: require("./Handsontable.vue").default
   },
   methods: {
     getData() {

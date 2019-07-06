@@ -103,8 +103,7 @@ export default {
     this.getData();
   },
   components: {
-    ImportExcel: require("./ImportExcel.vue").default,
-    Handsontable: require("./Handsontable.vue").default
+    ImportExcel: require("./ImportExcel.vue").default
   },
   methods: {
     getData() {

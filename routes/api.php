@@ -23,26 +23,24 @@ Route::group(['prefix' => 'excel'], function () {
         if (!$request['id']) {
             return [null];
         }
-
         $id = $request['id'];
         $json = $request['json'];
-        $checkUpdate = $request['check_update'] ? $request['check_update'] : 0;
+        $checkUpdate = $request['check_update'] ? $request['check_update'] : false;
         if ($checkUpdate) {
             DB::table($table)
-                ->updateOrInsert([
-                    'id' => $id,
-                ],
+                ->updateOrInsert(
+                    [
+                        'id' => $id,
+                    ],
                     [
                         'json' => $json,
                     ]
                 );
         }
-
         $getData = DB::table($table)->where('id', $id)->first();
         if ($getData) {
             return response()->json($getData);
         }
-
         return response()->json([null], 404);
     });
     Route::post('delete', function (Request $request) use ($table) {
@@ -50,7 +48,6 @@ Route::group(['prefix' => 'excel'], function () {
         if (!$id) {
             return [null];
         }
-
         DB::table($table)->where('id', $id)->delete();
         return response()->json(['status' => true], 200);
     });
@@ -66,12 +63,10 @@ Route::group(['prefix' => 'excel'], function () {
             }
             return response()->json(['status' => null], 404);
         });
-
         Route::post('total', function () use ($table) {
             $getCount = DB::table($table)->count();
             return response()->json($getCount, 200);
         });
-
         Route::post('data-detail', function (Request $request) use ($table) {
             $id = $request['id'];
             $getData = DB::table($table)->where('id', $id)->first(['json']);
@@ -80,7 +75,6 @@ Route::group(['prefix' => 'excel'], function () {
             }
             return response()->json(['status' => null], 404);
         });
-
         Route::post('new-data-detail', function (Request $request) use ($table) {
             $getData = DB::table($table)->orderByDesc('updated_at')->first(['json']);
             if ($getData) {
@@ -88,7 +82,6 @@ Route::group(['prefix' => 'excel'], function () {
             }
             return response()->json(['status' => null], 404);
         });
-
         Route::post('create', function (Request $request) use ($table) {
             $name = $request['name'] ? $request['name'] : '';
             $json = $request['json'];
@@ -100,13 +93,11 @@ Route::group(['prefix' => 'excel'], function () {
             ]);
             return response()->json(['status', true]);
         });
-
         Route::post('update', function (Request $request) use ($table) {
             $id = $request['id'];
             if (!$id) {
                 return;
             }
-
             $name = DB::table($table)->where('id', $id)->select(['name']);
             $name = $request['name'] ? $request['name'] : $name;
             $json = $request['json'];
@@ -117,44 +108,39 @@ Route::group(['prefix' => 'excel'], function () {
             ]);
             return response()->json(['status', true]);
         });
-
         Route::post('delete', function (Request $request) use ($table) {
             $id = $request['id'];
             if (!$id) {
                 return response()->json([null], 404);
             }
-
             $hasDelete = DB::table($table)->where('id', $id)->delete();
             if ($hasDelete) {
                 return response()->json(['status' => true]);
             }
-
             return response()->json(['status' => false]);
         });
-
         Route::post('data-count', function (Request $request) use ($table) {
             $countQuery = DB::table($table)->count();
             $count = $request['count'] >= $countQuery ? $countQuery : $request['count'];
             $getData = DB::table($table)->orderByDesc('updated_at')->limit($count)->get(['json']);
             return response()->json($getData);
         });
-
     });
 });
 
 Route::group(['prefix' => 'backup-excel'], function () {
     $table = 'backup_excel';
-
     Route::post('create', function (Request $request) use ($table) {
         $title = $request['title'];
         $json = $request['json'];
         $time = Carbon::now();
         DB::table($table)
-            ->insert([
-                'title' => $title,
-                'json' => $json,
-                'created_at' => $time->toDateTimeString(),
-            ]
+            ->insert(
+                [
+                    'title' => $title,
+                    'json' => $json,
+                    'created_at' => $time->toDateTimeString(),
+                ]
             );
         return response()->json(['status' => true], 200);
     });
@@ -163,56 +149,49 @@ Route::group(['prefix' => 'backup-excel'], function () {
         if (!$id) {
             return [null];
         }
-
         $json = $request['json'];
         DB::table($table)->where('id', $id)
-            ->update([
-                'json' => $json,
-            ]
+            ->update(
+                [
+                    'json' => $json,
+                ]
             );
         $getData = DB::table($table)->where('id', $id)->first();
         return response()->json($getData);
     });
-
     Route::post('data', function (Request $request) use ($table) {
         $id = $request['id'];
         if (!$id) {
             return [null];
         }
-
         $getData = DB::table($table)->where('id', $id)->first();
         return response()->json($getData);
     });
-
     Route::post('listdata', function (Request $request) use ($table) {
         $getData = DB::table($table)->get(['id', 'title', 'created_at']);
         if (!$getData) {
             return response()->json(null, 404);
         }
-
         return response()->json($getData, 200);
     });
-
     Route::post('delete', function (Request $request) use ($table) {
         $id = $request['id'];
         if (!$id) {
             return [null];
         }
-
         DB::table($table)->where('id', $id)->delete();
         return response()->json(['status' => true], 200);
     });
-
     Route::post('restore', function (Request $request) use ($table) {
         $id = $request['id'];
         $restoreJson = DB::table($table)->where('id', $id)->first(['json']);
         $json = $restoreJson->json;
-
         $restore = DB::table('excel_table')->updateOrInsert(
             ['id' => 20],
             [
                 'json' => $json,
-            ]);
+            ]
+        );
         if ($restore) {
             return response()->json(['status' => true]);
         }
@@ -261,7 +240,7 @@ Route::group(['prefix' => 'filter-excel'], function () {
         DB::table($table)->where('id', $id)
             ->update([
                 'json' => $json,
-            ] );
+            ]);
         $getData = DB::table($table)->where('id', $id)->first();
         return response()->json($getData);
     });

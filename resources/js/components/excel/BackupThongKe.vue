@@ -62,9 +62,6 @@
 
 <script>
 export default {
-  components: {
-    Handsontable: require("./Handsontable.vue").default
-  },
   watch: {
     model(val) {
       if (val.id === undefined) return;

@@ -4,7 +4,8 @@ let components = [
 	'ButtonUpdate.vue',
 	'HideColumns.vue',
 	'VueUpload.vue',
-  'DialogConfirmName.vue'
+  'DialogConfirmName.vue',
+  'Handsontable.vue'
 ]
 
 components.forEach( item => {

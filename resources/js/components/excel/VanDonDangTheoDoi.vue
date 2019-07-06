@@ -86,10 +86,10 @@ const configCell = [
     data: [
       "Đang hoàn",
       "Chưa giao được",
-      "Đổi SP khác cho KH",
+      "Gửi đổi SP do đóng sai",
       "Gửi SP mới do BH",
       "Hàng khách gửi lại",
-      "Gửi bù do đóng sai",
+      "Gửi bù do đóng thiếu",
       "NVC làm thất lạc"
     ]
   },
@@ -116,9 +116,6 @@ const configCell = [
 ];
 
 export default {
-  components: {
-    Handsontable: require("./Handsontable.vue").default
-  },
   data() {
     return {
       id: 70,
@@ -134,7 +131,7 @@ export default {
         150, 93, 93, // Trạng thái, Ngày NVC giao BT, Ngày xử lý gần nhất,
         30, 30, 30, // l1, l2, l3
         185, 93, 93, // Tình trạng, Ngày bắt đầu hoàn, Ngày NVC báo trả nhưng chưa nhận,
-        93, 200, 200, 70, 40 // Ngày xử lý tiếp, Ghi chú, Kết quả xử lý, Lưu tạm, Người cập nhật cuối
+        93, 200, 200, 70, 100 // Ngày xử lý tiếp, Ghi chú, Kết quả xử lý, Lưu tạm, Người cập nhật cuối
       ],
       columnHeaderHeight: 90,
       colHeaders: [
@@ -180,14 +177,14 @@ export default {
               let indexNVC = getListNVC.name.findIndex(
                 name => name === nameDataNVC
               );
-              td.style.textAlign = "center";
               let linkNVC = getListNVC.link[indexNVC];
               MVD = MVD.toUpperCase();
-              return (td.innerHTML = `
+              td.textContent = `<a target="_blank" href="${linkNVC + MVD}"> ${nameDataNVC}</a>`
+              td.innerHTML = `
 								<a target="_blank" href="${linkNVC + MVD}"> ${nameDataNVC}</a>
-							`);
+							`;
             } else {
-              td.style.backgroundColor = "#ddd";
+              td.textContent = ''
             }
             return (cellProperties.readOnly = true);
           };
@@ -207,12 +204,11 @@ export default {
               .link;
             if (MVD) {
               MVD = MVD.toUpperCase();
-              td.style.textAlign = "center";
-              return (td.innerHTML = `
+              (td.innerHTML = `
 								<a target="_blank" href="${LinkMySapo + MVD}"> My sapo</a>
 							`);
             } else {
-              td.style.backgroundColor = "#ddd";
+              td.textContent = ''
             }
             return (cellProperties.readOnly = true);
           };
@@ -355,8 +351,8 @@ export default {
       let oldVal = array[0][2];
       let newVal = array[0][3];
       // validate col set data, not call maximum stack
-      if ((!oldVal && !newVal) || col === 17 || col === 18 || oldVal === newVal)
-        return;
+      if ( !newVal || (!oldVal && !newVal) || col === 17 || col === 18 || oldVal === newVal)
+      return;
       // handle
       let hot = this.$refs.handsontable.$refs.hot;
       let hotInstance = hot.hotInstance;

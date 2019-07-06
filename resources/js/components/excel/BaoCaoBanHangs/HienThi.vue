@@ -79,7 +79,6 @@
 <script>
 export default {
   components: {
-    Handsontable: require("../Handsontable.vue").default,
     ThemFileExcel: require('./ThemFileExcel').default,
   },
   data: () => ({

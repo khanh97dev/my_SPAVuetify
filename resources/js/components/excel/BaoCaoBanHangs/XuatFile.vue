@@ -58,9 +58,6 @@
 </template>
 <script>
 export default {
-  components: {
-    'Handsontable': require("../Handsontable").default
-  },
   data: () => ({
     id: 30,
     data: [],

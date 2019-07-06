@@ -81,7 +81,6 @@ export default {
   }),
   components: {
     ImportExcel: require("./ImportExcel.vue").default,
-    Handsontable: require("./Handsontable.vue").default
   },
   mounted() {
     this.$store.dispatch("excel/fetchData", this.id).then(() => {

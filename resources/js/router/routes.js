@@ -1,5 +1,5 @@
 export default [
-  { path: '/excel', name: 'excel', component: require('$comp/excel/index').default, children: 
+  { path: '/excel', name: 'excel', component: require('$comp/excel/index').default, children:
     [
       { path:'van-don-dang-theo-doi', name: 'excel.VanDonDangTheoDoi', component: require('$comp/excel/VanDonDangTheoDoi.vue').default },
       { path:'bao-cao-ban-hangs', name: 'excel.BaoCaoBanHangs', redirect: { name: 'excel.BaoCaoBanHangs.XuLy' } ,
@@ -14,7 +14,15 @@ export default [
       { path:'thong-ke-san-pham-moi', name: 'excel.ThongKeSanPhamMoi', component: require('$comp/excel/ThongKeSanPhamMoi').default },
       { path:'backup-thong-ke', name: 'excel.BackupThongKe', component: require('$comp/excel/BackupThongKe').default },
       { path:'bang-nhap-hangs', name: 'excel.BangNhapHangs', component: require('$comp/excel/BangNhapHangs').default},
-      { path:'d-l-mau', name: 'excel.DLmau', component: require('$comp/excel/DLmau').default},
+      // Bảng dữ liệu mẫu
+      { path:'bang-d-l-mau', name: 'excel.BangDLMau', component: require('$comp/excel/BangDLMau/index').default,
+      redirect: {name: 'excel.DLmau'},
+      children: [
+        { path:'d-l-mau', name: 'excel.DLmau', component: require('$comp/excel/BangDLMau/DLmau').default},
+        { path:'bang-thu-gon-d-l-mau', name: 'excel.BangThuGonDLMau', component: require('$comp/excel/BangDLMau/BangThuGonDLMau').default},
+        { path:'bang-luu-d-l-mau', name: 'excel.BangLuuDLMau', component: require('$comp/excel/BangDLMau/BangLuuDLMau').default},
+      ]},
+      // Bảng dữ liệu mẫu
     ]
   },
   ...applyRules(['guest'], [
