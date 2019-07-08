@@ -18,6 +18,7 @@ div.handsontable > div > div > div > table > tbody > tr > td:nth-child(2) {
       :columnHeaderHeight="columnHeaderHeight"
       :fixedColumnsLeft="fixedColumnsLeft"
       :showExportExcel="false"
+      :showReadOnly="false"
       :hiddenRows="false"
       :hideCol="[1]"
       :isDelData="false"
@@ -51,6 +52,7 @@ div.handsontable > div > div > div > table > tbody > tr > td:nth-child(2) {
         </VCardActions>
       </VCard>
     </VDialog>
+    <BtnFixedUpdate :loading="loading" @clicked="updateData(data)" />
   </div>
 </template>
 <script>
@@ -114,8 +116,17 @@ const configCell = [
     data: ["Lưu", "Không"]
   }
 ];
-
 export default {
+  watch: {
+    'isChange'(val){
+      if(val === true){
+        window.onbeforeunload = () => 'ok'
+      }else{
+        window.onbeforeunload = null
+      }
+      return val
+    },
+  },//watch
   data() {
     return {
       id: 70,
@@ -124,6 +135,8 @@ export default {
       listName: ["Hoài", "Tâm", "Mai", "...other"],
       baseURL: "/api/excel/data",
       dialog: true,
+      isChange: false,
+      loading: false,
       fixedColumnsLeft: 1,
       keyHandsontable: 0,
       colWidths: [
@@ -312,6 +325,7 @@ export default {
     },
     updateData(val, isUpdate = true) {
       if (!isUpdate) return;
+      this.loading = true
       let id = this.id;
       let jsonString = JSON.stringify(val);
       let check_update = 1;
@@ -324,6 +338,8 @@ export default {
         .post(this.baseURL, objUpdate)
         .then(response => {
           this.$toast.success("Cập nhật thành công!");
+          this.loading = this.isChange = false
+          console.log(this.isChange)
         })
         .catch(err => {
           console.error(err);
@@ -366,7 +382,7 @@ export default {
         : "...other";
       hotInstance.setDataAtCell(row, 18, username);
       if (!getLuuTam) hotInstance.setDataAtCell(row, 17, "Không");
-      return this.updateData(hotInstance.getData());
+      return this.isChange = true
     },
     handleUsername() {
       let getUsername = this.modelUsername;

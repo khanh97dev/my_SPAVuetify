@@ -7,7 +7,9 @@ let components = [
 	'HideColumns.vue',
 	'VueUpload.vue',
   'DialogConfirmName.vue',
-  'Handsontable.vue'
+  'Handsontable.vue',
+  'ButtonSpeedDials.vue',
+  'BtnFixedUpdate.vue'
 ]
 
 import Treeselect from '@riophae/vue-treeselect'
