@@ -13,11 +13,11 @@ import '~/plugins/index'
 import './components/requires/index'
 
 import { HotTable } from "@handsontable/vue";
-require('handsontable/dist/handsontable.full.css')
 Vue.component( 'HotTable', HotTable )
 import Handsontable from "handsontable";
 Vue.prototype.$Handsontable = Handsontable
 
+// require('handsontable/dist/handsontable.full.css')
 require('../style/style.css')
 
 Vue.use(Vuetify)

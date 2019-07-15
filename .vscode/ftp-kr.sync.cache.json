@@ -1,0 +1,116 @@
+{
+  "ftp://45.252.248.10:21@dosangta": {
+    "quanly.dosangtao.com": {
+      ".babelrc": {
+        "type": "-",
+        "size": 86,
+        "lmtime": 0,
+        "modified": false
+      },
+      ".editorconfig": {
+        "type": "-",
+        "size": 191,
+        "lmtime": 0,
+        "modified": false
+      },
+      ".env": {
+        "type": "-",
+        "size": 753,
+        "lmtime": 0,
+        "modified": false
+      },
+      ".env.example": {
+        "type": "-",
+        "size": 664,
+        "lmtime": 1557447960000,
+        "modified": false
+      },
+      ".gitattributes": {
+        "type": "-",
+        "size": 111,
+        "lmtime": 0,
+        "modified": false
+      },
+      ".gitignore": {
+        "type": "-",
+        "size": 200,
+        "lmtime": 1562589165153,
+        "modified": false
+      },
+      ".htaccess": {
+        "type": "-",
+        "size": 95,
+        "lmtime": 0,
+        "modified": false
+      },
+      ".well-known": {},
+      "LICENSE": {
+        "type": "-",
+        "size": 1071,
+        "lmtime": 1557447960000,
+        "modified": false
+      },
+      "QuanLiExcel.zip": {
+        "type": "-",
+        "size": 11703819,
+        "lmtime": 0,
+        "modified": false
+      },
+      "app": {},
+      "artisan": {
+        "type": "-",
+        "size": 1686,
+        "lmtime": 0,
+        "modified": false
+      },
+      "bootstrap": {},
+      "cgi-bin": {},
+      "composer.json": {
+        "type": "-",
+        "size": 1585,
+        "lmtime": 0,
+        "modified": false
+      },
+      "composer.lock": {
+        "type": "-",
+        "size": 157886,
+        "lmtime": 0,
+        "modified": false
+      },
+      "config": {},
+      "database": {},
+      "dosangtao": {},
+      "htaccess": {
+        "type": "-",
+        "size": 95,
+        "lmtime": 0,
+        "modified": false
+      },
+      "package-lock.json": {
+        "type": "-",
+        "size": 397411,
+        "lmtime": 1562589225303,
+        "modified": true
+      },
+      "package.json": {
+        "type": "-",
+        "size": 1686,
+        "lmtime": 0,
+        "modified": false
+      },
+      "phpunit.xml": {
+        "type": "-",
+        "size": 1040,
+        "lmtime": 0,
+        "modified": false
+      },
+      "public": {},
+      "resources": {},
+      "routes": {},
+      "storage": {},
+      "tests": {},
+      "vendor": {}
+    }
+  },
+  "$version": 1
+}

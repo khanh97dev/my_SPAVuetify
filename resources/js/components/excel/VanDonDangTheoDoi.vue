@@ -24,7 +24,6 @@ div.handsontable > div > div > div > table > tbody > tr > td:nth-child(2) {
       :isDelData="false"
       @delData="delData"
       @updateData="updateData"
-      @afterSetDataAtCell="afterSetDataAtCell"
     />
     <VDialog
       v-model="dialog"
@@ -295,7 +294,6 @@ export default {
         }
       }
     }
-    this.$root.$on("afterSetDataAtCell", this.afterSetDataAtCell);
     this.fetchData();
   },
   methods: {
@@ -307,8 +305,8 @@ export default {
           let data = response.data.json;
           //check data exist
           if (data) {
-            this.keyHandsontable += 1;
-            this.data = JSON.parse(data);
+            let sendData = JSON.parse(data);
+            this.setData(sendData)
           } else {
             this.createData();
           }
@@ -339,7 +337,8 @@ export default {
         .then(response => {
           this.$toast.success("Cập nhật thành công!");
           this.loading = this.isChange = false
-          console.log(this.isChange)
+        })
+        .then( () => {
         })
         .catch(err => {
           console.error(err);
@@ -360,30 +359,39 @@ export default {
         });
       return;
     },
-    afterSetDataAtCell(array) {
-      if (!array.length) return;
-      let row = array[0][0];
-      let col = array[0][1];
-      let oldVal = array[0][2];
-      let newVal = array[0][3];
-      // validate col set data, not call maximum stack
-      if ( !newVal || (!oldVal && !newVal) || col === 17 || col === 18 || oldVal === newVal)
-      return;
-      // handle
-      let hot = this.$refs.handsontable.$refs.hot;
-      let hotInstance = hot.hotInstance;
-      let getColMVD = hotInstance.getDataAtCol(0);
-      if (getColMVD.length && getColMVD.includes(newVal)) {
-        return this.$toast.error("Trùng");
-      }
-      let getLuuTam = hotInstance.getDataAtCell(row, 17);
-      let username = localStorage.getItem("username")
-        ? localStorage.getItem("username")
-        : "...other";
-      hotInstance.setDataAtCell(row, 18, username);
-      if (!getLuuTam) hotInstance.setDataAtCell(row, 17, "Không");
-      return this.isChange = true
+    setData(data){
+      this.keyHandsontable += 1
+      this.data = data
+      setTimeout(() => {
+
+        $hot.hotInstance.updateSettings({
+          afterSetDataAtCell(array) {
+            if (!array.length) return;
+            let row = array[0][0];
+            let col = array[0][1];
+            let oldVal = array[0][2];
+            let newVal = array[0][3];
+            // validate col set data, not call maximum stack
+            if ( !newVal || (!oldVal && !newVal) || col === 17 || col === 18 || oldVal === newVal)
+            return;
+            // handle
+            let hotInstance = $hot.hotInstance;
+            let getColMVD = hotInstance.getDataAtCol(0);
+            if (getColMVD.length && getColMVD.includes(newVal)) {
+              return this.$toast.error("Trùng");
+            }
+            let getLuuTam = hotInstance.getDataAtCell(row, 17);
+            let username = localStorage.getItem("username")
+              ? localStorage.getItem("username")
+              : "...other";
+            hotInstance.setDataAtCell(row, 18, username);
+            if (!getLuuTam) hotInstance.setDataAtCell(row, 17, "Không");
+            return this.isChange = true
+          },
+        })
+      }, 100);
     },
+
     handleUsername() {
       let getUsername = this.modelUsername;
       this.dialog = false;

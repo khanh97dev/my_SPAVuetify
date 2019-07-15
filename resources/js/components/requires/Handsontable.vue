@@ -34,7 +34,9 @@
           :settings="hotSettings"
           :renderAllRow="true"
           :colWidths="colWidths"
-          :width="width"
+          stretchH="all"
+          width="100%"
+          :height="600"
           :autoColumnSize="false"
           :autoRowSize="false"
           :rowHeights="35"
@@ -224,19 +226,22 @@ export default {
       default: () => () => {}
     }
   },
-  created: function() {
+  created() {
     this.$Handsontable.renderers.registerRenderer(
       "renderCellCustom",
       this.registerHandsontable
     );
-    this.key += 1;
-    this.data = this.changeTable;
+    this.setData().then( () => {
+      window.$hot = this.$refs.hot
+    })
   },
   methods: {
+    async setData(){
+      this.key += 1;
+      this.data = this.changeTable;
+    },
     exportExcel() {
-      let hot = this.$refs.hot;
-      window.hot = hot;
-      let exportPlugin1 = hot.hotInstance.getPlugin("exportFile");
+      let exportPlugin1 = this.$refs.hot.hotInstance.getPlugin("exportFile");
       exportPlugin1.downloadFile("csv", {
         columnDelimiter: ",",
         columnHeaders: this.columnHeaders,

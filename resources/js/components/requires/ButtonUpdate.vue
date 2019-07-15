@@ -14,7 +14,9 @@
 export default {
 	watch: {
 		model(val) {
-			this.$emit('toggle', !val)
+			$hot.hotInstance.updateSettings({
+				readOnly: !val
+			})
 		},
 	},
 	data() {
