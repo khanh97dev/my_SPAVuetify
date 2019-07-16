@@ -53,10 +53,10 @@ export default {
     nameSnack: ""
   }),
   mounted() {
-    this.getData();
+    this.fetchData();
   },
   methods: {
-    getData() {
+    fetchData() {
       let id = this.id;
       axios
         .post("/api/excel/data", { id })
@@ -106,18 +106,18 @@ export default {
               var lengthTonKho = dataTonKho[0].length;
               let dataBanHang = this.data[0];
               var lengthBanHang = dataBanHang[0].length;
-              dataTonKho.forEach((item, index) => {
+              dataTonKho.forEach( (item, index) => {
                 let id = item[1];
                 idTonKho.push(id);
               });
-              dataBanHang.forEach(item => {
+              dataBanHang.forEach( item => {
                 let id = item[0];
                 let indexTonKho = dataTonKho.findIndex(x => x[1] == id);
                 if (indexTonKho === -1) {
                   item[lengthBanHang] = "Tồn kho không tồn tại";
                   item[lengthBanHang + 1] = "";
                 } else {
-                  item.push("");
+                  item.push('');
                   item.push(dataTonKho[indexTonKho][lengthTonKho - 3]);
                 }
                 return item;
