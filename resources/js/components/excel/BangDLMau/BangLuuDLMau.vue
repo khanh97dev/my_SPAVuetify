@@ -21,7 +21,6 @@ export default {
     async fetchListData() {
       return await axios.post(this.baseURL+'/listdata').then( response => {
         this.data = response.data
-        console.log(this.data)
       }).catch(err => console.error(err) )
     },
   },

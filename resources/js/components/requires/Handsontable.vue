@@ -187,22 +187,22 @@ export default {
       default: () => []
     },
     columnHeaderHeight: {
-      default: () => false
+      default: () => 100
     },
     mergeCells: {
       default: () => []
     },
     colWidths: {
-      default: () => "100"
+      default: () => 100
     },
     width: {
-      default: () => "100%"
+      default: () => '100%'
     },
     colUpdate: {
       default: () => 0
     },
     title: {
-      default: () => "Excel"
+      default: () => 'Excel'
     },
     isDelData: {
       default: () => false
