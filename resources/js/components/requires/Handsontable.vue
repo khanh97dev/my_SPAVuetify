@@ -34,7 +34,6 @@
           :settings="hotSettings"
           :renderAllRow="true"
           :colWidths="colWidths"
-          stretchH="all"
           width="100%"
           :height="600"
           :autoColumnSize="false"
@@ -241,26 +240,29 @@ export default {
       this.data = this.changeTable;
     },
     exportExcel() {
-      let exportPlugin1 = this.$refs.hot.hotInstance.getPlugin("exportFile");
-      exportPlugin1.downloadFile("csv", {
-        columnDelimiter: ",",
-        columnHeaders: this.columnHeaders,
-        exportHiddenColumns: true,
-        exportHiddenRows: true,
-        fileExtension: "csv",
-        filename: this.title,
-        mimeType: "text/csv",
-        rowDelimiter: "\r\n"
-      });
+      let promptTitle = prompt('Nhập tên file')
+      if(promptTitle){
+        let exportPlugin1 = this.$refs.hot.hotInstance.getPlugin("exportFile");
+        exportPlugin1.downloadFile("csv", {
+          columnDelimiter: ",",
+          columnHeaders: this.columnHeaders,
+          exportHiddenColumns: true,
+          exportHiddenRows: true,
+          fileExtension: "csv",
+          filename: promptTitle + '_[DD]-[MM]-[YYYY]',
+          mimeType: "text/csv",
+          rowDelimiter: "\r\n"
+        });
+      }
     },
     updateOrSetData() {
       if (!this.dataChange.length && !checkDel) return;
       this.readOnly = true;
       let colUpdate = this.colUpdate;
       let hot = this.$refs.hot;
-      let getData = hot.hotInstance.getData();
+      let getData = hot.hotInstance.getSourceDataArray();
       if (colUpdate) {
-        this.data.forEach((item, index, self) => {
+        this.data.forEach( (item, index, self) => {
           if (this.dataChange.includes(item[0])) {
             self[index][colUpdate] = "Đã cập nhật";
           }

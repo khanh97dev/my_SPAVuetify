@@ -59,7 +59,12 @@ export default {
       arr1.forEach(function(val, index) {
         if (arr2.includes(val) && !results.includes(index)) results.push(index);
       });
-      this.hideCol = results;
+      $hot.hotInstance.updateSettings({
+        hiddenColumns: {
+          columns: results,
+          indicators: true
+        }
+      })
       return val;
     }
   },

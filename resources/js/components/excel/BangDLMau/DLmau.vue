@@ -7,8 +7,7 @@
             <ImportExcel @uploaded="handleData" />
           </VFlex>
           <v-flex md4 xs6>
-            <v-btn color="success" @click="dialog = true">Lưu dữ liệu đã lọc</v-btn>
-            <DialogConfirmName :dialog="dialog" @dialogClose="() => dialog = false" @done="saveFiltered" />
+            <v-btn color="success" @click="saveFiltered()">Lưu dữ liệu đã lọc</v-btn>
           </v-flex>
         </VCardTitle>
         <VCardText>
@@ -183,7 +182,7 @@ export default {
       let vm = this;
       axios
         .post(this.baseURL, { id: idBangNhapHang })
-        .then(resBangNhapHang => {
+        .then( resBangNhapHang => {
           let jsonBangNhapHang = JSON.parse(resBangNhapHang.data.json);
           let dataBangNhapHang = jsonBangNhapHang.data;
 
@@ -221,19 +220,17 @@ export default {
               ]
             );
           }
-
-          dataBangNhapHang.forEach((itemBangNhapHang, indexBangNhapHang) => {
+          dataBangNhapHang.forEach( (itemBangNhapHang, indexBangNhapHang) => {
             let idItemBangNhapHang = itemBangNhapHang[0];
             data.some((item, index) => {
               let idItem = item[1];
               if (idItem === idItemBangNhapHang) {
-                itemBangNhapHang.forEach(
-                  (valueChildBangNhapHang, indexChildBangNhapHang) => {
+                itemBangNhapHang.forEach( (valueChildBangNhapHang, indexChildBangNhapHang) => {
                     if (indexChildBangNhapHang > 1)
                       return data[index].push(valueChildBangNhapHang);
                   }
                 );
-                for (let i = 0; i < 4; i++) data[index].push("");
+                for (let i = 0; i < 4; i++) data[index].push('');
                 return true;
               }
             });
@@ -331,7 +328,7 @@ export default {
       this.$toast.success("Xóa hàng thành công");
     },
     setColumnHide(val) {
-      let hot = this.$refs.handsontable.$refs.hot.hotInstance
+      let hot = $hot.hotInstance
       val.length
         ? hot.updateSettings({
             hiddenColumns: {
@@ -347,8 +344,7 @@ export default {
           })
     },
     getDataFilter() {
-      let hotInstance = this.hotInstance
-      let getDataFilter = hotInstance.getData(); // return array
+      let getDataFilter = $hot.hotInstance.getData(); // return current data (array)
       getDataFilter.forEach(item => {
         item.splice(2, 35)
         return setTimeout( () => {
@@ -357,18 +353,19 @@ export default {
       })
       return getDataFilter
     },
-    saveFiltered(name) {
-      if(!name) return
-      this.dialog = false
-      let getDataFilter = this.getDataFilter()
-      let jsonString = JSON.stringify(getDataFilter)
-      let data = {
-        title: name,
-        json: jsonString
+    saveFiltered() {
+      let promptTitle = prompt('Nhập tiêu đề')
+      if(promptTitle){
+        let getDataFilter = this.getDataFilter()
+        let jsonString = JSON.stringify(getDataFilter)
+        let data = {
+          title: promptTitle,
+          json: jsonString
+        }
+        axios.post('/api/filter-excel/create', data).then( resposne => {
+          this.$toast.success('Lưu dữ liệu lọc thành công')
+        }).catch( () => this.$toast.error('Lỗi') )
       }
-      axios.post('/api/filter-excel/create', data).then( resposne => {
-        this.$toast.success('Thành công')
-      }).catch( () => this.$toast.error('Lỗi') )
     },
   }
 };

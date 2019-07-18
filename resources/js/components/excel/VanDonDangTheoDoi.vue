@@ -10,7 +10,6 @@ div.handsontable > div > div > div > table > tbody > tr > td:nth-child(2) {
       ref="handsontable"
       :key="keyHandsontable"
       :changeTable="data"
-      :cells="cells"
       :columns="columns"
       :mergeCells="mergeCells"
       :colWidths="colWidths"
@@ -138,14 +137,14 @@ export default {
       loading: false,
       fixedColumnsLeft: 1,
       keyHandsontable: 0,
-      colWidths: [
-        120, 100, 55, 90, 70, // Mã vận đơn, SĐT khách, Link sapo, NVC, Link VC
-        150, 93, 93, // Trạng thái, Ngày NVC giao BT, Ngày xử lý gần nhất,
-        30, 30, 30, // l1, l2, l3
-        185, 93, 93, // Tình trạng, Ngày bắt đầu hoàn, Ngày NVC báo trả nhưng chưa nhận,
-        93, 200, 200, 70, 100 // Ngày xử lý tiếp, Ghi chú, Kết quả xử lý, Lưu tạm, Người cập nhật cuối
-      ],
       columnHeaderHeight: 90,
+      colWidths: [
+        120, 100, 70, 90, 70, // Mã vận đơn, SĐT khách, Link sapo, NVC, Link VC
+        150, 96, 96, // Trạng thái, Ngày NVC giao BT, Ngày xử lý gần nhất,
+        30, 30, 30, // l1, l2, l3
+        185, 96, 96, // Tình trạng, Ngày bắt đầu hoàn, Ngày NVC báo trả nhưng chưa nhận,
+        96, 200, 200, 70, 150 // Ngày xử lý tiếp, Ghi chú, Kết quả xử lý, Lưu tạm, Người cập nhật cuối
+      ],
       colHeaders: [
         "Mã vận đơn",
         "SĐT Khách",
@@ -169,81 +168,6 @@ export default {
       ],
       columns: false,
       mergeCells: false,
-      cells: function(row, col, prop) {
-        let hot = this.instance;
-        // handle link NVC
-        if (col === 4) {
-          this.renderer = function(
-            instance,
-            td,
-            row,
-            col,
-            prop,
-            value,
-            cellProperties
-          ) {
-            let MVD = instance.getDataAtCell(row, 0); // MVD : Mã Vận Đơn
-            let nameDataNVC = instance.getDataAtCell(row, col - 1);
-            let getListNVC = configCell.find(item => item.key === "NVC");
-            if (MVD && nameDataNVC && getListNVC.name.includes(nameDataNVC)) {
-              let indexNVC = getListNVC.name.findIndex(
-                name => name === nameDataNVC
-              );
-              let linkNVC = getListNVC.link[indexNVC];
-              MVD = MVD.toUpperCase();
-              td.textContent = `<a target="_blank" href="${linkNVC + MVD}"> ${nameDataNVC}</a>`
-              td.innerHTML = `
-								<a target="_blank" href="${linkNVC + MVD}"> ${nameDataNVC}</a>
-							`;
-            } else {
-              td.textContent = ''
-            }
-            return (cellProperties.readOnly = true);
-          };
-        }
-        if (col === 2) {
-          this.renderer = function(
-            instance,
-            td,
-            row,
-            col,
-            prop,
-            value,
-            cellProperties
-          ) {
-            let MVD = instance.getDataAtCell(row, 0); // MVD : Mã Vận Đơn
-            let LinkMySapo = configCell.find(obj => obj.key === "LinkMySapo")
-              .link;
-            if (MVD) {
-              MVD = MVD.toUpperCase();
-              (td.innerHTML = `
-								<a target="_blank" href="${LinkMySapo + MVD}"> My sapo</a>
-							`);
-            } else {
-              td.textContent = ''
-            }
-            return (cellProperties.readOnly = true);
-          };
-        }
-        // handle Lưu
-        if (col !== 17) {
-          let getLuuTam = hot.getDataAtCell(row, 17);
-          let countCols = hot.countCols();
-          var cellProperties = {};
-          if (getLuuTam && getLuuTam === "Lưu") {
-            for (let i = 0; i < countCols; i++) {
-              hot.setCellMeta(row, i, "className", "red lighten-5 v-card");
-              cellProperties.readOnly = true;
-            }
-          } else {
-            for (let i = 0; i < countCols; i++) {
-              hot.setCellMeta(row, i, "className", "");
-              cellProperties.readOnly = false;
-            }
-          }
-          return cellProperties;
-        }
-      }
     };
   },
   mounted() {
@@ -251,7 +175,19 @@ export default {
     if (this.columns < lengthColWidths) {
       this.columns = [];
       for (let i = 0; i < lengthColWidths; i++) {
-        if (i === 6 || i === 7 || i === 12 || i === 13 || i === 14) {
+        if( i === 0 ){
+          this.columns.push({
+            renderer: function(hotInstance, td, row, column, prop, value, cellProperties) {
+              let getLuuTam = hotInstance.getDataAtCell(row, 17);
+              if (getLuuTam && getLuuTam === "Lưu") {
+                td.classList.add("bg-danger-lighten");
+              } else td.classList.remove("bg-danger-lighten");
+              value = value ? value.toString().toUpperCase() : value
+              td.style.textDecoration = 'italic'
+              return td.textContent = value
+            }
+          });
+        } else if (i === 6 || i === 7 || i === 12 || i === 13 || i === 14) {
           //date
           this.columns.push({
             type: "date",
@@ -268,18 +204,63 @@ export default {
             strict: false,
             source: configCell.find(obj => obj.key === "NVC").name
           });
-        } else if (i === 5) {
+        } else if(i === 2){
+          // Link sappo
+          this.columns.push({
+            renderer: function(hotInstance, td, row, column, prop, value, cellProperties) {
+              let MVD = hotInstance.getDataAtCell(row, 0); // MVD : Mã Vận Đơn
+              let LinkMySapo = configCell.find(obj => obj.key === "LinkMySapo").link;
+              let getLuuTam = hotInstance.getDataAtCell(row, 17);
+              if (getLuuTam && getLuuTam === "Lưu") {
+                td.classList.add("bg-danger-lighten");
+              } else td.classList.remove("bg-danger-lighten");
+              if (MVD && MVD.length > 0 ) {
+                MVD = MVD ? MVD.toString().toUpperCase() : MVD;
+                (td.innerHTML = `
+                  <a target="_blank" href="${LinkMySapo + MVD}"> My sapo</a>
+                `);
+              } else {
+                td.textContent = ''
+              }
+              return (cellProperties.readOnly = true);
+            }
+          })
+        } else if(i === 4) {
+          this.columns.push({
+            renderer: function(hotInstance, td, row, col, prop, value, cellProperties) {
+              let MVD = hotInstance.getDataAtCell(row, 0); // MVD : Mã Vận Đơn
+              let nameDataNVC = hotInstance.getDataAtCell(row, col - 1);
+              let getListNVC = configCell.find(item => item.key === "NVC");
+              let getLuuTam = hotInstance.getDataAtCell(row, 17);
+              if (getLuuTam && getLuuTam === "Lưu") {
+                td.classList.add("bg-danger-lighten");
+              } else td.classList.remove("bg-danger-lighten");
+              if (MVD && nameDataNVC && getListNVC.name.includes(nameDataNVC)) {
+                let indexNVC = getListNVC.name.findIndex( name => name === nameDataNVC );
+                let linkNVC = getListNVC.link[indexNVC];
+                MVD = MVD.length ? MVD.toUpperCase() : MVD ;
+                td.textContent = `<a target="_blank" href="${linkNVC + MVD}"> ${nameDataNVC}</a>`
+                td.innerHTML = `
+                  <a target="_blank" href="${linkNVC + MVD}"> ${nameDataNVC}</a>
+                `;
+              } else {
+                td.textContent = ''
+              }
+              return (cellProperties.readOnly = true);
+            }
+          })
+        } else if(i === 5) {
           // Trang Thai
           this.columns.push({
             type: "dropdown",
-            strict: false,
+            strict: true,
             source: configCell.find(obj => obj.key === "TrangThai").data
           });
         } else if (i === 11) {
           // Tinh Trạng
           this.columns.push({
             type: "dropdown",
-            strict: false,
+            strict: true,
             source: configCell.find(obj => obj.key === "TinhTrang").data
           });
         } else if (i === 17) {
@@ -287,19 +268,73 @@ export default {
           this.columns.push({
             type: "dropdown",
             strict: false,
-            source: configCell.find(obj => obj.key === "LuuTam").data
+            source: configCell.find(obj => obj.key === "LuuTam").data,
+            renderer: function(hotInstance, td, row, column, prop, value, cellProperties) {
+              td.textContent = value
+              return cellProperties.readOnly = false
+            }
           });
         } else {
           this.columns.push({});
         }
-      }
+      } // end for
     }
-    this.fetchData();
+    this.fetchData().then( () => {
+      setTimeout(() => {
+        return $hot.hotInstance.updateSettings({
+          readOnly: false,
+          cells: function(row, col, prop) {
+            // handle Lưu
+            if (col !== 17) {
+              let getLuuTam = $hot.hotInstance.getDataAtCell(row, 17);
+              let countCols = $hot.hotInstance.countCols();
+              var cellProperties = {};
+              if (getLuuTam && getLuuTam === "Lưu") {
+                for (let i = 0; i < countCols; i++) {
+                  $hot.hotInstance.setCellMeta(row, i, "className", "bg-danger-lighten");
+                  cellProperties.readOnly = true;
+                }
+              } else {
+                for (let i = 0; i < countCols; i++) {
+                  if(i !== 17)
+                    $hot.hotInstance.setCellMeta(row, i, "className", "");
+                    cellProperties.readOnly = false;
+                }
+              }
+              return cellProperties;
+            }
+          },
+          afterSetDataAtCell(array) {
+            if (!array.length) return;
+            let row = array[0][0];
+            let col = array[0][1];
+            let oldVal = array[0][2];
+            let newVal = array[0][3];
+            // validate col set data, not call maximum stack
+            if ( !newVal || (!oldVal && !newVal) || col === 17  || col === 18 || oldVal === newVal)
+            return;
+            // handle
+            let hotInstance = $hot.hotInstance;
+            let getColMVD = hotInstance.getDataAtCol(0);
+            if (getColMVD.length && getColMVD.includes(newVal)) {
+              return alert('trùng')
+            }
+            let getLuuTam = hotInstance.getDataAtCell(row, 17);
+            let username = localStorage.getItem("username")
+              ? localStorage.getItem("username")
+              : "...other";
+            hotInstance.setDataAtCell(row, 18, username);
+            if (!getLuuTam) hotInstance.setDataAtCell(row, 17, "Không");
+            return this.isChange = true
+          },
+        })
+      }, 200);
+    } );
   },
   methods: {
-    fetchData() {
+    async fetchData() {
       let id = this.id;
-      axios
+      return await axios
         .post(this.baseURL, { id })
         .then(response => {
           let data = response.data.json;
@@ -362,34 +397,6 @@ export default {
     setData(data){
       this.keyHandsontable += 1
       this.data = data
-      setTimeout(() => {
-
-        $hot.hotInstance.updateSettings({
-          afterSetDataAtCell(array) {
-            if (!array.length) return;
-            let row = array[0][0];
-            let col = array[0][1];
-            let oldVal = array[0][2];
-            let newVal = array[0][3];
-            // validate col set data, not call maximum stack
-            if ( !newVal || (!oldVal && !newVal) || col === 17 || col === 18 || oldVal === newVal)
-            return;
-            // handle
-            let hotInstance = $hot.hotInstance;
-            let getColMVD = hotInstance.getDataAtCol(0);
-            if (getColMVD.length && getColMVD.includes(newVal)) {
-              return this.$toast.error("Trùng");
-            }
-            let getLuuTam = hotInstance.getDataAtCell(row, 17);
-            let username = localStorage.getItem("username")
-              ? localStorage.getItem("username")
-              : "...other";
-            hotInstance.setDataAtCell(row, 18, username);
-            if (!getLuuTam) hotInstance.setDataAtCell(row, 17, "Không");
-            return this.isChange = true
-          },
-        })
-      }, 100);
     },
 
     handleUsername() {
@@ -400,3 +407,10 @@ export default {
   }
 };
 </script>
+
+
+<style>
+.bg-danger-lighten {
+  background: rgb(255, 207, 207) !important;
+}
+</style>

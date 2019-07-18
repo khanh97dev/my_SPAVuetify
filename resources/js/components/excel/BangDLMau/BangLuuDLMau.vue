@@ -1,8 +1,7 @@
 <template>
-<div>
-  <treeselect
-    v-model="value" :multiple="true" :options="data" match-keys="title"/>
-</div>
+  <div>
+
+  </div>
 </template>
 
 <script>
