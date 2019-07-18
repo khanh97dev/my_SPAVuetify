@@ -187,7 +187,7 @@ export default {
       default: () => []
     },
     columnHeaderHeight: {
-      default: () => 100
+      default: () => 50
     },
     mergeCells: {
       default: () => []
