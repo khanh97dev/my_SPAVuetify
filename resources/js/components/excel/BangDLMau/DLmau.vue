@@ -16,6 +16,13 @@
             :columns="hideCol"
             @setColumnHide="setColumnHide"
           />
+          <div class="text-xs-center">
+            <v-pagination
+              v-model="page"
+              :length="total_pages"
+              :total-visible="7"
+            ></v-pagination>
+          </div>
           <Handsontable
             v-if="data.length"
             ref="handsontable"
@@ -46,6 +53,8 @@
   </div>
 </template>
 <script>
+var paginateData = []
+var page_size = 500, current_page = 1;
 export default {
   components: {
     ImportExcel: require("../ImportExcel").default
@@ -53,6 +62,8 @@ export default {
   data() {
     return {
       id: 60,
+      page: 1,
+      total_pages: 1,
       data: [],
       hotInstance: '',
       baseURL: "/api/excel/data",
@@ -146,6 +157,12 @@ export default {
       width: "100%"
     };
   },
+  watch: {
+    'page'(val){
+      $hot.hotInstance.loadData([])
+      $hot.hotInstance.loadData(paginateData[val - 1])
+    },
+  },//watch
   mounted() {
     this.fetchData().then( () => {
       setTimeout(() => {
@@ -279,10 +296,18 @@ export default {
         type: 'dropdown',
         source: ['có', 'không']
       }
-      this.data = json.data;
+      let data = json.data
+      this.total_pages = Math.ceil(data.length / page_size)
+      paginateData = []
+      while(data.length){
+        paginateData.push(data.splice(0, page_size))
+      }
+      this.data = paginateData[this.page  - 1];
       this.keyUpload += 1;
     },
     updateData(data) {
+      paginateData[this.page - 1] = $hot.hotInstance.getSourceDataArray();
+      data = [].concat(...paginateData)
       let id = this.id;
       let obj = {
         data,

@@ -3,6 +3,13 @@
     <v-container grid-list-xs>
       <VCard>
         <VCardText>
+          <div class="text-xs-center">
+            <v-pagination
+              v-model="page"
+              :length="total_pages"
+              :total-visible="7"
+            ></v-pagination>
+          </div>
           <Handsontable
             v-if="data.length"
             :key="keyUpload"
@@ -29,10 +36,14 @@
   </div>
 </template>
 <script>
+var paginateData = []
 export default {
   data() {
     return {
       id: 50,
+      page: 1,
+      total_pages: 1,
+      page_size: 500,
       data: [],
       baseURL: "/api/excel/data",
       keyUpload: 0,
@@ -120,6 +131,12 @@ export default {
       width: "100%"
     };
   },
+  watch: {
+    'page'(val){
+      $hot.hotInstance.loadData([])
+      $hot.hotInstance.loadData(paginateData[val - 1])
+    },
+  },//watch
   mounted() {
     this.columns.forEach( (item, index) => {
       if( index === 3 || index === 7 || index === 11 || index === 15 || index === 19 ){
@@ -138,7 +155,13 @@ export default {
         .then(response => {
           if (response.data.json) {
             let json = JSON.parse(response.data.json);
-            this.data = json.data
+            let data = json.data
+            this.total_pages = Math.ceil(data.length / this.page_size)
+            paginateData = []
+            while(data.length){
+              paginateData.push(data.splice(0, this.page_size))
+            }
+            this.data = paginateData[this.page  - 1];
             this.keyUpload += 1;
           } else this.createDataDemo();
         })
@@ -175,13 +198,19 @@ export default {
           }
         })
         .then(() => {
-          let data = this.data;
-          this.data = [];
-          this.data = data;
+          let data = this.data
+          this.total_pages = Math.ceil(data.length / this.page_size)
+          paginateData = []
+          while(data.length){
+            paginateData.push(data.splice(0, this.page_size))
+          }
+          this.data = paginateData[this.page  - 1];
           this.updateData(data)
         });
     },
     updateData(data) {
+      paginateData[this.page - 1] = $hot.hotInstance.getSourceDataArray();
+      data = [].concat(...paginateData)
       let id = this.id;
       let headers = {
         colHeaders: this.colHeaders,
