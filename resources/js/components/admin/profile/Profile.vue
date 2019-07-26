@@ -1,7 +1,6 @@
 <template>
   <div>
     <h2 class="mb-3 primary--text headline">Your Profile</h2>
-
     <v-card>
       <v-card-text>
         <v-text-field
@@ -10,7 +9,6 @@
             box
             readonly
         ></v-text-field>
-
         <v-text-field
             label="Email"
             v-model="user.email"
@@ -38,6 +36,7 @@
     }),
 
     mounted() {
+      console.log(this.$route)
       this.user = Object.assign(this.user, this.auth)
     }
   }

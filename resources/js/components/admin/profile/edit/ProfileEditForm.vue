@@ -9,7 +9,6 @@
             :rules="[rules.required('name')]"
             :disabled="loading"
         ></v-text-field>
-
         <v-text-field
             :label="labels.email"
             v-model="form.email"

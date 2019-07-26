@@ -1,5 +1,4 @@
 let mix = require('laravel-mix');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -16,12 +15,12 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.webpackConfig({
   resolve: {
-    extensions: ['.js', '.json', '.vue'],
+    extensions: ['.js', '.json', '.vue', '.ts'],
     alias: {
       '~': path.join(__dirname, './resources/js'),
       '$comp': path.join(__dirname, './resources/js/components')
     }
-  }
+  },
 })
 
 mix.browserSync(process.env.APP_URL)

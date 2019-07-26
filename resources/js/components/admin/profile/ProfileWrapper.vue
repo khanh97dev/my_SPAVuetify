@@ -32,8 +32,8 @@
     methods: {
       navigation() {
         this.items = [
-          { title: 'View', icon: 'visibility', to: {name: 'profile'} },
-          { title: 'Edit', icon: 'edit', to: {name: 'profile-edit'} },
+          { title: 'View', icon: 'visibility', to: {name: 'profile.view'} },
+          { title: 'Edit', icon: 'edit', to: {name: 'profile.edit'} },
         ]
       }
     }

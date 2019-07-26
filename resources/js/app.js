@@ -11,17 +11,17 @@ import store from '~/store/index'
 import App from '$comp/App'
 import '~/plugins/index'
 import './components/requires/index'
+import './components/index.js'
 
 import { HotTable } from "@handsontable/vue";
 Vue.component( 'HotTable', HotTable )
 import Handsontable from "handsontable";
 Vue.prototype.$Handsontable = Handsontable
 
-// require('handsontable/dist/handsontable.full.css')
 require('../style/style.css')
 
-Vue.use(Vuetify)
 
+Vue.use(Vuetify)
 Vue.use(VuetifyToast)
 
 export const app = new Vue({

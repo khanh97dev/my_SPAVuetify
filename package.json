@@ -10,6 +10,7 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.4.4",
     "axios": "^0.18",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -31,9 +32,16 @@
     "@handsontable/vue": "^4.0.0",
     "@riophae/vue-treeselect": "0.0.38",
     "awesome-notifications": "^3.0.3",
+    "chart.js": "^2.8.0",
+    "fs-extra": "^8.1.0",
     "handsontable": "^7.1.0",
+    "laravel-mix-versionhash": "^1.0.7",
+    "path": "^0.12.7",
     "vue-awesome-notifications": "^3.0.3",
+    "vue-chartkick": "^0.5.2",
+    "vue-fullcalendar": "^1.0.9",
     "vue-multiselect": "^2.1.6",
+    "vue-swatches": "^1.0.3",
     "vue2-dropzone": "^3.5.9",
     "vuetify-upload-button": "^2.0.0",
     "xlsx": "^0.14.3"

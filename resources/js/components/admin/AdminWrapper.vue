@@ -1,41 +1,44 @@
 <template>
-  <div class="fill-height">
-    <app-nav :mini="mini" @nav-toggle="navToggle"></app-nav>
-    <top-menu @nav-toggle="navToggle"></top-menu>
-
-    <v-content>
-      <v-container fluid>
-        <transition name="fade" mode="out-in">
-          <router-view></router-view>
-        </transition>
-      </v-container>
-    </v-content>
-
-    <app-footer></app-footer>
+  <div>
+    <template v-if="!$route.meta.allowAnonymous">
+      <v-app id="inspire">
+        <div class="app-container">
+          <toolbar @toggleNavigationBar="drawer = !drawer"/>
+          <navigation :toggle="drawer"/>
+          <v-content>
+            <breadcrumbs />
+            <transition
+              name="fade"
+              mode="out-in"
+            >
+              <router-view/>
+            </transition>
+            <page-footer />
+          </v-content>
+        </div>
+      </v-app>
+    </template>
+    <template v-else>
+      <transition>
+        <keep-alive>
+          <transition
+            name="fade"
+            mode="out-in"
+          >
+            <router-view/>
+          </transition>
+        </keep-alive>
+      </transition>
+    </template>
   </div>
 </template>
 
 <script>
   import { settings } from '~/config.js'
-  import AppNav from './shared/AppNav'
-  import TopMenu from './shared/TopMenu'
-  import AppFooter from './shared/AppFooter'
-
   export default {
     data: () => ({
-      mini: false
+      mini: false,
+      drawer: true,
     }),
-
-    components: {
-      AppNav,
-      TopMenu,
-      AppFooter
-    },
-
-    methods: {
-      navToggle() {
-        this.mini = !this.mini
-      }
-    }
   }
 </script>
