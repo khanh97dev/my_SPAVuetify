@@ -28,12 +28,12 @@ router.beforeEach(async (to, from, next) => {
 })
 
 const rules = {
-  guest: { fail: 'index', check: () => (!store.getters['auth/check']) },
-  auth: { fail: 'login', check: () => (store.getters['auth/check']) }
+  guest: { failToRouteName: 'Admin', check: () => (!store.getters['auth/check']) },
+  auth: { failToRouteName: 'Login', check: () => (store.getters['auth/check']) }
 }
 
 function reroute(to) {
-  let failRoute = false,
+  let failRouteName = false,
       checkResult = false
 
   to.meta.rules && to.meta.rules.forEach(rule => {
@@ -44,22 +44,22 @@ function reroute(to) {
         checks[i] = rules[rule[i]].check()
         check = check || checks[i]
       }
-      if (!check && !failRoute) {
-        failRoute = rules[rule[checks.indexOf(false)]].fail
+      if (!check && !failRouteName) {
+        failRouteName = rules[rule[checks.indexOf(false)]].failToRouteName
       }
     }
     else {
       check = rules[rule].check()
-      if (!check && !failRoute) {
-        failRoute = rules[rule].fail
+      if (!check && !failRouteName) {
+        failRouteName = rules[rule].failToRouteName
       }
     }
 
     checkResult = checkResult && check
   })
 
-  if (!checkResult && failRoute) {
-    return { name: failRoute }
+  if (!checkResult && failRouteName) {
+    return { name: failRouteName }
   }
 
   return false

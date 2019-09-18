@@ -3,8 +3,8 @@
     <template v-if="!$route.meta.allowAnonymous">
       <v-app id="inspire">
         <div class="app-container">
-          <toolbar @toggleNavigationBar="drawer = !drawer"/>
-          <navigation :toggle="drawer"/>
+          <toolbar @clicked="() => console.log('ok')"/>
+          <navigation/>
           <v-content>
             <breadcrumbs />
             <transition
@@ -34,8 +34,23 @@
 </template>
 <script>
   export default {
-    data: () => ({
-      drawer: true,
-    }),
+    watch: {
+      'drawer'(show){
+        console.log(show);
+        this.$store.commit('app/sidebar', show)
+      },
+    },//watch
+    data(){
+      return {
+        drawer: true,
+      }
+    },//data
+    methods:{
+      toggleSidebar(){
+        alert('ok')
+        this.drawer = !this.drawer;
+        this.$store.commit['app/sidebar', this.drawer];
+      }
+    },//methods
   }
 </script>

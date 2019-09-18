@@ -16,6 +16,9 @@ import LocationStatistic      from './statistics/LocationStatistic.vue';
 import SiteViewStatistic      from './statistics/SiteViewStatistic.vue';
 import TotalEarningsStatistic from './statistics/TotalEarningsStatistic.vue';
 
+/* Element UI */
+import ElementNavbar from './Element/navbar.vue';
+
 [
   Toolbar,
   Navigation,
@@ -29,7 +32,8 @@ import TotalEarningsStatistic from './statistics/TotalEarningsStatistic.vue';
   Stepper,
   LocationStatistic,
   SiteViewStatistic,
-  TotalEarningsStatistic
+  TotalEarningsStatistic,
+  ElementNavbar
 ].forEach( component =>  {
   Vue.component( component.name , component)
 } )

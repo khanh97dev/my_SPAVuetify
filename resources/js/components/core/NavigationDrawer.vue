@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer
-    v-model="toggle"
+    :value="drawer"
     absolute
     z-index="1000"
     app
@@ -21,7 +21,7 @@
         :to="{ name: 'Dashboard' }"
         class="text"
       >
-        Vue Admin Template
+        Hkdark
       </router-link>
     </v-toolbar>
     <v-list>
@@ -107,16 +107,15 @@
 <script>
   export default {
     name: 'navigation',
-    props: {
-      toggle: {
-        type: Boolean,
-        required: false,
-        default: true
-      }
-    },
-
+    watch: {
+      '$store.state.app.sidebar'(show){
+        this.drawer = show;
+      },
+    },//watch
     data() {
       return {
+        drawer: window.localStorage.getItem('sidebar') || false,
+        selectedIndex: 1,
         items: [
           { title: 'Dashboard', icon: 'dashboard', routeName: 'Dashboard' },
           { title: 'Tabs', icon: 'tab', routeName: 'Tabs' },
@@ -131,7 +130,6 @@
             { title: 'Snackbar', icon: 'event_note', routeName: 'Snackbar' }
           ] },
         ],
-        selectedIndex: 1,
         admins: [
           {
             title: 'Management', icon: 'people_outline', routeName: 'management'

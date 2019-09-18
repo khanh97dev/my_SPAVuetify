@@ -17,10 +17,10 @@
         </v-layout>
       </v-container>
       <v-snackbar
+        v-text="result"
         v-model="showResult"
         :timeout="2000"
         top>
-        {{ result }}
       </v-snackbar>
     </v-content>
   </v-app>
@@ -44,7 +44,7 @@
         showResult: false,
         result: '',
         rules: {
-          required: value => !!value || 'Required.'
+          required: value => value || 'Required.'
         }
       }
     },

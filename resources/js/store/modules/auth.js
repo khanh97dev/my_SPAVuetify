@@ -1,13 +1,17 @@
+// import
 import axios from 'axios'
 import { api } from '~/config'
 import * as types from '../mutation-types'
+import * as Cookies from "js-cookie";
+window.Cookies = Cookies
 
+const name_token = 'access_token'
 /**
  * Initial state
  */
 export const state = {
   user: null,
-  token: window.localStorage.getItem('token')
+  token: Cookies.get( name_token ) || null,
 }
 
 /**
@@ -22,16 +26,19 @@ export const mutations = {
     state.user = null
     state.token = null
     window.localStorage.removeItem('token')
+    Cookies.remove( name_token)
   },
 
   [types.FETCH_USER_FAILURE](state) {
     state.user = null
     window.localStorage.removeItem('token')
+    Cookies.remove( name_token)
   },
 
   [types.SET_TOKEN](state, { token }) {
     state.token = token
     window.localStorage.setItem('token', token)
+    Cookies.set( name_token, token)
   }
 }
 

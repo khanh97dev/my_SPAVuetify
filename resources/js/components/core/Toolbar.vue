@@ -4,7 +4,7 @@
     app
     :color="$root.themeColor">
     <v-toolbar-title>
-      <v-toolbar-side-icon @click="toggleNavigationBar"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click="() => $emit('clicked')"></v-toolbar-side-icon>
     </v-toolbar-title>
     <v-text-field
       flat
@@ -249,7 +249,9 @@ export default {
           click: () => {
             const vm = this;
 
-            vm.$router.push({ name: 'Login' });
+            vm.$store.dispatch('auth/logout').then( () => {
+              vm.$router.push({ name: 'Login' });
+            });
           }
         }
       ],
@@ -296,12 +298,6 @@ export default {
   },
 
   methods: {
-    toggleNavigationBar() {
-      const vm = this;
-
-      vm.$emit('toggleNavigationBar');
-    },
-
     setUpSettings() {
       const vm = this;
 

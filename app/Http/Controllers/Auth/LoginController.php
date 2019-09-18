@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
@@ -40,12 +42,13 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = request(['email', 'password']);
-
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['message' => 'Invalid login credential.'], 401);
         }
 
         $user = $request->user();
+
+        $this->setTokenApi($token);
 
         return response()->json(compact('token', 'user'));
     }
@@ -72,5 +75,24 @@ class LoginController extends Controller
         auth()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
+    }
+
+    /**
+     * Set token api with http only
+     *
+     * @param string $token
+     * @return void
+     */
+    public function setTokenApi($token)
+    {
+        Cookie::queue(
+            'token_api',
+            $token,
+            864000, // 10 days
+            null,
+            null,
+            false,
+            true // HttpOnly
+        );
     }
 }

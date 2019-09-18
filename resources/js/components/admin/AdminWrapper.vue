@@ -3,8 +3,8 @@
     <template v-if="!$route.meta.allowAnonymous">
       <v-app id="inspire">
         <div class="app-container">
-          <toolbar @toggleNavigationBar="drawer = !drawer"/>
-          <navigation :toggle="drawer"/>
+          <toolbar @clicked="drawer = !drawer"/>
+          <navigation/>
           <v-content>
             <breadcrumbs />
             <transition
@@ -36,6 +36,11 @@
 <script>
   import { settings } from '~/config.js'
   export default {
+    watch: {
+      'drawer'(show){
+        this.$store.commit('app/sidebar', show);
+      },
+    },//watch
     data: () => ({
       mini: false,
       drawer: true,
