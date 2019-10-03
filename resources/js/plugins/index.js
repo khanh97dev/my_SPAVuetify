@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import './axios'
 import './notification'
+import './progressbar'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
 import VueChartkick from 'vue-chartkick';

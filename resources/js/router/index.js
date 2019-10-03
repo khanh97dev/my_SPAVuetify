@@ -1,68 +1,88 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import routes from 'vue-auto-routing'
 import store from '~/store/index'
-import routes from './routes'
+// import routes from './routes'
 import { api } from '~/config'
+const page = path => () => import(`~/pages/${path}`).then(m => m.default || m)
+
 
 Vue.use(VueRouter)
-
 const router = new VueRouter({
   mode: 'history',
   routes
 })
 
 router.beforeEach(async (to, from, next) => {
-  if (store.getters['auth/token'] && !store.getters['auth/check']) {
+  setTitle(to);
+
+  let isAuth = to.path.match(/\/admin.*/g);
+  let isGuest = to.path.match(/\/login.*|\/register.*/g);
+
+  if (isGuest && store.getters['auth/token']) return next('/admin/');
+
+  if (isAuth && !store.getters['auth/token']) {
     try {
-      await store.dispatch('auth/fetchUser')
+      return await store.dispatch('auth/fetchUser')
+        .then( status => {
+          if(status) return next();
+          next('/login');
+        });
     } catch (e) {}
+  } else {
+    next();
   }
 
-  let route = reroute(to)
-  if (route) {
-    next(route)
-  }
-  else {
-    next()
-  }
-})
 
-const rules = {
-  guest: { failToRouteName: 'Admin', check: () => (!store.getters['auth/check']) },
-  auth: { failToRouteName: 'Login', check: () => (store.getters['auth/check']) }
+  // let route = reroute(to)
+  // if (route) {
+  //   next(route)
+  // }
+  // else {
+  //   next()
+  // }
+});
+
+function setTitle(to){
+  document.title = to.name.replace('-', ' - ').toUpperCase();
 }
 
-function reroute(to) {
-  let failRouteName = false,
-      checkResult = false
+// const rules = {
+//   guest: { failToRouteName: 'Admin', check: () => (!store.getters['auth/check']) },
+//   auth: { failToRouteName: 'Login', check: () => (store.getters['auth/check']) }
+// }
 
-  to.meta.rules && to.meta.rules.forEach(rule => {
-    let check = false
-    if (Array.isArray(rule)) {
-      let checks = []
-      for (let i in rule) {
-        checks[i] = rules[rule[i]].check()
-        check = check || checks[i]
-      }
-      if (!check && !failRouteName) {
-        failRouteName = rules[rule[checks.indexOf(false)]].failToRouteName
-      }
-    }
-    else {
-      check = rules[rule].check()
-      if (!check && !failRouteName) {
-        failRouteName = rules[rule].failToRouteName
-      }
-    }
+// function reroute(to) {
+//   let failRouteName = false,
+//       checkResult = false
 
-    checkResult = checkResult && check
-  })
+//   to.meta.rules && to.meta.rules.forEach(rule => {
+//     let check = false
+//     if (Array.isArray(rule)) {
+//       let checks = []
+//       for (let i in rule) {
+//         checks[i] = rules[rule[i]].check()
+//         check = check || checks[i]
+//       }
+//       if (!check && !failRouteName) {
+//         failRouteName = rules[rule[checks.indexOf(false)]].failToRouteName
+//       }
+//     }
+//     else {
+//       check = rules[rule].check()
+//       if (!check && !failRouteName) {
+//         failRouteName = rules[rule].failToRouteName
+//       }
+//     }
 
-  if (!checkResult && failRouteName) {
-    return { name: failRouteName }
-  }
+//     checkResult = checkResult && check
+//   })
 
-  return false
-}
+//   if (!checkResult && failRouteName) {
+//     return { name: failRouteName }
+//   }
+
+//   return false
+// }
 
 export default router

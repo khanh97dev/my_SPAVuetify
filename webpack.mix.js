@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+const VueAutoRoutingPlugin = require('vue-auto-routing/lib/webpack-plugin');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -21,6 +22,15 @@ mix.webpackConfig({
       '$comp': path.join(__dirname, './resources/js/components')
     }
   },
+  plugins: [
+    new VueAutoRoutingPlugin({
+      // Path to the directory that contains your page components.
+      pages: './resources/js/pages',
+
+      // A string that will be added to importing component path (default @/pages/).
+      importPrefix: '~/pages/'
+    })
+  ]
 })
 
 mix.browserSync(process.env.APP_URL)

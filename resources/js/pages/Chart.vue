@@ -38,6 +38,7 @@
 
 <script>
 export default {
+  layout: 'default',
   data() {
     return {
       data: {'USA': 90, 'China': 70, 'Russia': 40, 'Germany': 30, 'United Kingdom': 35, 'Turkey': 22},

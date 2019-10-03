@@ -1,7 +1,7 @@
 <template>
   <v-breadcrumbs :items="items" class="breadcrumbs" divider="/">
     <template slot="item" slot-scope="props">
-      <router-link :to="{ name: props.item.name }" class="link">{{ props.item.breadcrumb }}</router-link>
+      <router-link :to="{ path: props.item.path }" class="link">{{ props.item.breadcrumb }}</router-link>
     </template>
   </v-breadcrumbs>
 </template>
@@ -37,12 +37,11 @@ export default {
 
       // vm.items = vm.$route.meta.breadcrumb;
       if(vm.$route.matched.length){
-        vm.items = vm.$route.matched.map( item => ({
-            breadcrumb: item.meta.breadcrumb,
-            name: item.name
+        vm.items = vm.$route.matched.map( route => ({
+            breadcrumb: route.path.split('/').pop(),
+            path: route.path
           })
         );
-        document.title = vm.items.map( item => item.breadcrumb ).join(' - ');
       }
     }
   }

@@ -26,13 +26,13 @@ export const mutations = {
     state.user = null
     state.token = null
     window.localStorage.removeItem('token')
-    Cookies.remove( name_token)
+    Cookies.remove( name_token )
   },
 
   [types.FETCH_USER_FAILURE](state) {
     state.user = null
     window.localStorage.removeItem('token')
-    Cookies.remove( name_token)
+    Cookies.remove( name_token )
   },
 
   [types.SET_TOKEN](state, { token }) {
@@ -54,8 +54,10 @@ export const actions = {
     try {
       const { data } = await axios.get(api.path('me'))
       commit(types.SET_USER, data)
+      return true;
     } catch (e) {
       commit(types.FETCH_USER_FAILURE)
+      return false;
     }
   },
 

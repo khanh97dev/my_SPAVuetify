@@ -32,7 +32,7 @@
               <v-list-tile-title class="item-title">{{ item.title }}</v-list-tile-title>
             </v-list-tile>
             <template v-for="(child, i) in item.children">
-              <v-list-tile :to="{ name: child.routeName }">
+              <v-list-tile :to="{ path: child.routeName }">
                 <v-list-tile-action>
                   <v-icon>{{ child.icon }}</v-icon>
                 </v-list-tile-action>
@@ -42,7 +42,7 @@
           </v-list-group>
         </template>
         <template v-else>
-          <v-list-tile :to="{ name: item.routeName }">
+          <v-list-tile :to="{ path: item.routeName }">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
@@ -114,7 +114,7 @@
         items: [
           { title: 'Dashboard', icon: 'dashboard', routeName: 'Dashboard' },
           { title: 'Tabs', icon: 'tab', routeName: 'Tabs' },
-          { title: 'Calendar', icon: 'calendar_today', routeName: 'Calendar' },
+          { title: 'Calendar', icon: 'calendar_today', routeName: '/admin/Calendar' },
           { title: 'Mailbox', icon: 'inbox', routeName: 'Mailbox' },
           { title: 'Widgets', icon: 'pageview', children: [
             { title: 'Social', icon: 'group', routeName: 'Social' },

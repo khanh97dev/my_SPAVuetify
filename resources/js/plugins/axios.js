@@ -1,11 +1,13 @@
 import axios from 'axios'
 window.axios = axios
+import VueProgressBar from 'vue-progressbar'
 import store from '~/store/index'
 import router from '~/router/index'
 import { api } from '~/config'
 import { app } from '~/app'
 
 axios.interceptors.request.use(config => {
+  app.$Progress.start(); // for every request start the progress
   config.headers['X-Requested-With'] = 'XMLHttpRequest'
   config.headers['Access-Control-Allow-Origin'] = '*'
   config.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
@@ -21,6 +23,7 @@ axios.interceptors.request.use(config => {
 })
 
 axios.interceptors.response.use(response => {
+  app.$Progress.finish(); // finish when a response is received
   return response
 }, async error => {
   if (store.getters['auth/token']) {
