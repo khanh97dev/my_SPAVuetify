@@ -1,13 +1,6 @@
 <template>
-  <div>
-    index
-  </div>
+   <div>
+     fdsdf
+     {{ $route }}
+   </div>
 </template>
-<script>
-export default {
-  title: 'Admin',
-  mounted(){
-    console.log(this)
-  },// mounted
-}
-</script>
