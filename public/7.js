@@ -1,14 +1,89 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Chart.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Chart.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/admin/Snackbar.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/admin/Snackbar.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50,90 +125,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      data: {
-        'USA': 90,
-        'China': 70,
-        'Russia': 40,
-        'Germany': 30,
-        'United Kingdom': 35,
-        'Turkey': 22
-      },
-      lineChartData: {
-        '2018-05-13': 640,
-        '2018-05-14': 200,
-        '2018-05-15': 250,
-        '2018-05-16': 350,
-        '2018-05-17': 200,
-        '2018-05-18': 670,
-        '2018-05-19': 600,
-        '2018-05-20': 800
-      },
-      areaStatisticData: {
-        '2018-01-01 00:00:00 -0800': 250,
-        '2018-01-02 00:00:00 -0800': 150,
-        '2018-01-03 00:00:00 -0800': 450,
-        '2018-01-04 00:00:00 -0800': 350,
-        '2018-01-05 00:00:00 -0800': 700,
-        '2018-01-06 00:00:00 -0800': 360
-      },
-      scatterStatisticData: {
-        '174.0': '30.0',
-        '176.5': '79.3',
-        '142.5': '68.3',
-        '155.5': '37.3',
-        '165.5': '54.3',
-        '140.5': '15.3',
-        '153.5': '24.3',
-        '152.5': '75.3',
-        '146.5': '98.3'
-      },
-      linearMultipleChartdata: [{
-        name: 'Workout',
-        data: {
-          '2017-01-01 00:00:00 -0800': 3,
-          '2017-01-02 00:00:00 -0800': 9,
-          '2017-01-03 00:00:00 -0800': 14,
-          '2017-01-04 00:00:00 -0800': 7,
-          '2017-01-05 00:00:00 -0800': 4
-        }
-      }, {
-        name: 'Go to concert',
-        data: {
-          '2017-01-01 00:00:00 -0800': 3,
-          '2017-01-02 00:00:00 -0800': 2,
-          '2017-01-03 00:00:00 -0800': 5,
-          '2017-01-04 00:00:00 -0800': 9,
-          '2017-01-05 00:00:00 -0800': 14
-        }
-      }, {
-        name: 'Call Parents',
-        data: {
-          '2017-01-01 00:00:00 -0800': 9,
-          '2017-01-02 00:00:00 -0800': 13,
-          '2017-01-03 00:00:00 -0800': 8,
-          '2017-01-04 00:00:00 -0800': 4,
-          '2017-01-05 00:00:00 -0800': 9
-        }
-      }, {
-        name: 'Eat Breakfast',
-        data: {
-          '2017-01-01 00:00:00 -0800': 5,
-          '2017-01-02 00:00:00 -0800': 3,
-          '2017-01-03 00:00:00 -0800': 5,
-          '2017-01-04 00:00:00 -0800': 8,
-          '2017-01-05 00:00:00 -0800': 5
-        }
-      }]
+      showSnackbar: false,
+      locationVertical: 'top',
+      locationHorizontal: null,
+      mode: '',
+      timeout: 2000,
+      content: 'I\'m cool snackbar..',
+      color: 'undefined'
     };
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Chart.vue?vue&type=template&id=00258125&":
-/*!***************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Chart.vue?vue&type=template&id=00258125& ***!
-  \***************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/admin/Snackbar.vue?vue&type=template&id=3ae44f0e&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/admin/Snackbar.vue?vue&type=template&id=3ae44f0e& ***!
+  \************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -153,130 +161,306 @@ var render = function() {
         "v-layout",
         { attrs: { row: "", wrap: "" } },
         [
-          _c(
-            "v-flex",
-            { attrs: { "d-flex": "", lg4: "", sm6: "", xs12: "" } },
-            [_c("pie-chart", { attrs: { data: _vm.data, legend: "bottom" } })],
-            1
-          ),
+          _c("v-flex", { attrs: { "d-flex": "", lg2: "", sm6: "", xs12: "" } }),
           _vm._v(" "),
           _c(
             "v-flex",
-            { attrs: { "d-flex": "", lg4: "", sm6: "", xs12: "" } },
+            { attrs: { "d-flex": "", lg6: "", sm6: "", xs12: "" } },
             [
-              _c("column-chart", {
-                attrs: {
-                  data: _vm.data,
-                  colors: ["#b00"],
-                  label: "Population",
-                  ytitle: "Population"
-                }
-              })
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "v-container",
+                        { attrs: { fluid: "" } },
+                        [
+                          _c(
+                            "v-layout",
+                            { attrs: { row: "", wrap: "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", sm12: "" } },
+                                [
+                                  _c(
+                                    "v-card-text",
+                                    [
+                                      _vm._v(
+                                        "\n                  Choose snackbar color:\n                  "
+                                      ),
+                                      _c("swatches", {
+                                        attrs: {
+                                          inline: "",
+                                          colors: "material-basic",
+                                          exceptions: ["#FFFFFF"],
+                                          shapes: "circles",
+                                          "show-border": ""
+                                        },
+                                        model: {
+                                          value: _vm.color,
+                                          callback: function($$v) {
+                                            _vm.color = $$v
+                                          },
+                                          expression: "color"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", sm3: "" } },
+                                [
+                                  _c("v-checkbox", {
+                                    attrs: {
+                                      label: "Left",
+                                      value: "left",
+                                      color: _vm.$root.themeColor
+                                    },
+                                    model: {
+                                      value: _vm.locationHorizontal,
+                                      callback: function($$v) {
+                                        _vm.locationHorizontal = $$v
+                                      },
+                                      expression: "locationHorizontal"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs6: "", sm3: "" } },
+                                [
+                                  _c("v-checkbox", {
+                                    attrs: {
+                                      label: "Right",
+                                      value: "right",
+                                      color: _vm.$root.themeColor
+                                    },
+                                    model: {
+                                      value: _vm.locationHorizontal,
+                                      callback: function($$v) {
+                                        _vm.locationHorizontal = $$v
+                                      },
+                                      expression: "locationHorizontal"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs6: "", sm3: "" } },
+                                [
+                                  _c("v-checkbox", {
+                                    attrs: {
+                                      label: "Top",
+                                      value: "top",
+                                      color: _vm.$root.themeColor
+                                    },
+                                    model: {
+                                      value: _vm.locationVertical,
+                                      callback: function($$v) {
+                                        _vm.locationVertical = $$v
+                                      },
+                                      expression: "locationVertical"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs6: "", sm3: "" } },
+                                [
+                                  _c("v-checkbox", {
+                                    attrs: {
+                                      label: "Bottom",
+                                      value: "bottom",
+                                      color: _vm.$root.themeColor
+                                    },
+                                    model: {
+                                      value: _vm.locationVertical,
+                                      callback: function($$v) {
+                                        _vm.locationVertical = $$v
+                                      },
+                                      expression: "locationVertical"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", sm3: "" } },
+                                [
+                                  _c("v-checkbox", {
+                                    attrs: {
+                                      label: "Multi-line (mobile)",
+                                      value: "multi-line",
+                                      color: _vm.$root.themeColor
+                                    },
+                                    model: {
+                                      value: _vm.mode,
+                                      callback: function($$v) {
+                                        _vm.mode = $$v
+                                      },
+                                      expression: "mode"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", sm3: "" } },
+                                [
+                                  _c("v-checkbox", {
+                                    attrs: {
+                                      label: "Vertical (mobile)",
+                                      value: "vertical",
+                                      color: _vm.$root.themeColor
+                                    },
+                                    model: {
+                                      value: _vm.mode,
+                                      callback: function($$v) {
+                                        _vm.mode = $$v
+                                      },
+                                      expression: "mode"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                {
+                                  attrs: { xs12: "", sm4: "", "offset-sm4": "" }
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: { label: "Text", type: "text" },
+                                    model: {
+                                      value: _vm.content,
+                                      callback: function($$v) {
+                                        _vm.content = $$v
+                                      },
+                                      expression: "content"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", sm4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Time to hide toast:",
+                                      type: "number"
+                                    },
+                                    model: {
+                                      value: _vm.timeout,
+                                      callback: function($$v) {
+                                        _vm.timeout = _vm._n($$v)
+                                      },
+                                      expression: "timeout"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            block: "",
+                            dark: "",
+                            color: _vm.$root.themeColor
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.showSnackbar = true
+                            }
+                          }
+                        },
+                        [_vm._v("\n            Show Snackbar\n          ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-snackbar",
+                    {
+                      attrs: {
+                        bottom: _vm.locationVertical === "bottom",
+                        left: _vm.locationHorizontal === "left",
+                        "multi-line": _vm.mode === "multi-line",
+                        right: _vm.locationHorizontal === "right",
+                        timeout: _vm.timeout,
+                        top: _vm.locationVertical === "top",
+                        color: _vm.color,
+                        vertical: _vm.mode === "vertical"
+                      },
+                      model: {
+                        value: _vm.showSnackbar,
+                        callback: function($$v) {
+                          _vm.showSnackbar = $$v
+                        },
+                        expression: "showSnackbar"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n          " + _vm._s(_vm.content) + "\n          "
+                      ),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "white", flat: "" },
+                          on: {
+                            click: function($event) {
+                              _vm.showSnackbar = false
+                            }
+                          }
+                        },
+                        [_vm._v("\n            Close\n          ")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           ),
           _vm._v(" "),
-          _c(
-            "v-flex",
-            { attrs: { "d-flex": "", lg4: "", sm6: "", xs12: "" } },
-            [
-              _c("bar-chart", {
-                attrs: {
-                  data: _vm.data,
-                  colors: ["#75e569"],
-                  xtitle: "Population"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-flex",
-            { attrs: { "d-flex": "", lg4: "", sm6: "", xs12: "" } },
-            [
-              _c("area-chart", {
-                attrs: {
-                  data: _vm.areaStatisticData,
-                  xtitle: "Time",
-                  ytitle: "Population",
-                  dataset: { borderWidth: 3 }
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-flex",
-            { attrs: { "d-flex": "", lg4: "", sm6: "", xs12: "" } },
-            [
-              _c("scatter-chart", {
-                attrs: {
-                  data: _vm.scatterStatisticData,
-                  xtitle: "Size",
-                  colors: ["#107250"],
-                  ytitle: "Population"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-flex",
-            { attrs: { "d-flex": "", lg4: "", sm6: "", xs12: "" } },
-            [
-              _c("line-chart", {
-                attrs: {
-                  data: _vm.lineChartData,
-                  colors: ["#8b47d8"],
-                  xtitle: "Time",
-                  ytitle: "Population",
-                  dataset: { borderWidth: 3 }
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-flex",
-            { attrs: { "d-flex": "", lg4: "", sm6: "", xs12: "" } },
-            [
-              _c("line-chart", {
-                attrs: {
-                  data: _vm.lineChartData,
-                  colors: ["#47d8a5"],
-                  curve: false,
-                  xtitle: "Time",
-                  ytitle: "Population",
-                  dataset: { borderWidth: 3 }
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-flex",
-            { attrs: { "d-flex": "", lg4: "", sm6: "", xs12: "" } },
-            [
-              _c("pie-chart", {
-                attrs: { data: _vm.data, legend: "bottom", donut: true }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-flex",
-            { attrs: { "d-flex": "", lg4: "", sm6: "", xs12: "" } },
-            [
-              _c("line-chart", { attrs: { data: _vm.linearMultipleChartdata } })
-            ],
-            1
-          )
+          _c("v-flex", { attrs: { "d-flex": "", lg2: "", sm6: "", xs12: "" } })
         ],
         1
       )
@@ -291,18 +475,18 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/pages/Chart.vue":
-/*!**************************************!*\
-  !*** ./resources/js/pages/Chart.vue ***!
-  \**************************************/
+/***/ "./resources/js/pages/admin/Snackbar.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/pages/admin/Snackbar.vue ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Chart_vue_vue_type_template_id_00258125___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Chart.vue?vue&type=template&id=00258125& */ "./resources/js/pages/Chart.vue?vue&type=template&id=00258125&");
-/* harmony import */ var _Chart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Chart.vue?vue&type=script&lang=js& */ "./resources/js/pages/Chart.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Snackbar_vue_vue_type_template_id_3ae44f0e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Snackbar.vue?vue&type=template&id=3ae44f0e& */ "./resources/js/pages/admin/Snackbar.vue?vue&type=template&id=3ae44f0e&");
+/* harmony import */ var _Snackbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Snackbar.vue?vue&type=script&lang=js& */ "./resources/js/pages/admin/Snackbar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -311,9 +495,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Chart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Chart_vue_vue_type_template_id_00258125___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Chart_vue_vue_type_template_id_00258125___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Snackbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Snackbar_vue_vue_type_template_id_3ae44f0e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Snackbar_vue_vue_type_template_id_3ae44f0e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -323,38 +507,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/pages/Chart.vue"
+component.options.__file = "resources/js/pages/admin/Snackbar.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/pages/Chart.vue?vue&type=script&lang=js&":
-/*!***************************************************************!*\
-  !*** ./resources/js/pages/Chart.vue?vue&type=script&lang=js& ***!
-  \***************************************************************/
+/***/ "./resources/js/pages/admin/Snackbar.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/pages/admin/Snackbar.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Chart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Chart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Chart.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Chart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Snackbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Snackbar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/admin/Snackbar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Snackbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/pages/Chart.vue?vue&type=template&id=00258125&":
-/*!*********************************************************************!*\
-  !*** ./resources/js/pages/Chart.vue?vue&type=template&id=00258125& ***!
-  \*********************************************************************/
+/***/ "./resources/js/pages/admin/Snackbar.vue?vue&type=template&id=3ae44f0e&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/pages/admin/Snackbar.vue?vue&type=template&id=3ae44f0e& ***!
+  \******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Chart_vue_vue_type_template_id_00258125___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Chart.vue?vue&type=template&id=00258125& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Chart.vue?vue&type=template&id=00258125&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Chart_vue_vue_type_template_id_00258125___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Snackbar_vue_vue_type_template_id_3ae44f0e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Snackbar.vue?vue&type=template&id=3ae44f0e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/admin/Snackbar.vue?vue&type=template&id=3ae44f0e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Snackbar_vue_vue_type_template_id_3ae44f0e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Chart_vue_vue_type_template_id_00258125___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Snackbar_vue_vue_type_template_id_3ae44f0e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

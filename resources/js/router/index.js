@@ -42,9 +42,9 @@ router.beforeEach(async (to, from, next) => {
   //   next()
   // }
 });
-
+console.log(process.env)
 function setTitle(to){
-  document.title = to.name.replace('-', ' - ').toUpperCase();
+  document.title = to.name ? to.name.replace('-', ' - ').toUpperCase() : process.env.APP_NAME;
 }
 
 // const rules = {
