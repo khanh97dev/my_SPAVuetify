@@ -4,7 +4,7 @@
     app
     :color="$root.themeColor">
     <v-toolbar-title>
-      <v-toolbar-side-icon @click="() => $emit('clicked')"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click="() => $parent.$emit('sidebar', sidebar = !sidebar)"></v-toolbar-side-icon>
     </v-toolbar-title>
     <v-text-field
       flat
@@ -212,6 +212,7 @@ export default {
   name: 'toolbar',
   data() {
     return {
+      sidebar: this.$store.state.app.sidebar,
       rating: null,
       dialog: false,
       dialogSettings: false,

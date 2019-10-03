@@ -107,14 +107,9 @@
 <script>
   export default {
     name: 'navigation',
-    watch: {
-      '$store.state.app.sidebar'(show){
-        this.drawer = show;
-      },
-    },//watch
     data() {
       return {
-        drawer: window.localStorage.getItem('sidebar') || false,
+        drawer: this.$store.state.app.sidebar,
         selectedIndex: 1,
         items: [
           { title: 'Dashboard', icon: 'dashboard', routeName: 'Dashboard' },
@@ -140,8 +135,19 @@
         ]
       }
     },
+    mounted(){
+      const vm = this;
 
+      vm.toggleSidebar();
+    },// mounted
     methods: {
+      toggleSidebar(){
+        const vm = this;
+        vm.$parent.$on('sidebar', status => {
+          vm.drawer = status;
+          vm.$store.commit('app/sidebar', status);
+        });
+      },
       changeRoute(routeName, selectedIndex) {
         const vm = this;
 

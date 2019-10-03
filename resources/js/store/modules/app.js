@@ -1,5 +1,5 @@
 export const state = {
-  sidebar: false,
+  sidebar: localStorage.getItem('sidebar') || false,
 }
 
 export const mutations = {
