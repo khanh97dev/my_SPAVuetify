@@ -28,7 +28,7 @@
       <v-btn
           flat
           :disabled="loading"
-          :to="{ name: 'forgot', query: {email: form.email} }"
+          :to="{ path: '/forgot', query: {email: form.email} }"
           color="grey darken-2"
       >
         Forgot password?

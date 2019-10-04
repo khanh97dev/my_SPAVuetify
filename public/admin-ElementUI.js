@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[3],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["admin-ElementUI"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/admin/ElementUI.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\

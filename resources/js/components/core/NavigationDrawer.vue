@@ -29,75 +29,75 @@
         <template v-if="item.children">
           <v-list-group :prepend-icon="item.icon">
             <v-list-tile slot="activator">
-              <v-list-tile-title class="item-title">{{ item.title }}</v-list-tile-title>
+              <v-list-tile-name class="item-name">{{ item.name }}</v-list-tile-name>
             </v-list-tile>
             <template v-for="(child, i) in item.children">
-              <v-list-tile :to="{ path: child.routeName }">
+              <v-list-tile :to="{ path: child.path }">
                 <v-list-tile-action>
                   <v-icon>{{ child.icon }}</v-icon>
                 </v-list-tile-action>
-                <v-list-tile-title class="item-title">{{ child.title }}</v-list-tile-title>
+                <v-list-tile-name class="item-name">{{ child.name }}</v-list-tile-name>
               </v-list-tile>
             </template>
           </v-list-group>
         </template>
         <template v-else>
-          <v-list-tile :to="{ path: item.routeName }">
+          <v-list-tile :to="{ path: item.path }">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
-            <v-list-tile-title class="item-title">{{ item.title }}</v-list-tile-title>
+            <v-list-tile-name class="item-name">{{ item.name }}</v-list-tile-name>
           </v-list-tile>
         </template>
       </template>
 
       <v-list-group prepend-icon="fingerprint">
         <v-list-tile slot="activator">
-          <v-list-tile-title class="item-title">Authorization</v-list-tile-title>
+          <v-list-tile-name class="item-name">Authorization</v-list-tile-name>
         </v-list-tile>
 
         <v-list-tile @click="$router.push({ name: 'Error', params: { errorCode: '403' } })">
           <v-list-tile-action>
             <v-icon>cancel</v-icon>
           </v-list-tile-action>
-          <v-list-tile-title class="item-title">403</v-list-tile-title>
+          <v-list-tile-name class="item-name">403</v-list-tile-name>
         </v-list-tile>
 
         <v-list-tile @click="$router.push({ name: 'Error', params: { errorCode: '404' } })">
           <v-list-tile-action>
             <v-icon>cancel</v-icon>
           </v-list-tile-action>
-          <v-list-tile-title class="item-title">404</v-list-tile-title>
+          <v-list-tile-name class="item-name">404</v-list-tile-name>
         </v-list-tile>
 
         <v-list-tile @click="$router.push({ name: 'Error', params: { errorCode: '500' } })">
           <v-list-tile-action>
             <v-icon>cancel</v-icon>
           </v-list-tile-action>
-          <v-list-tile-title class="item-title">500</v-list-tile-title>
+          <v-list-tile-name class="item-name">500</v-list-tile-name>
         </v-list-tile>
 
-        <v-list-tile @click="$router.push({ name: 'Login' })">
+        <v-list-tile @click="$router.push({ name: '/login' })">
           <v-list-tile-action>
             <v-icon>cancel</v-icon>
           </v-list-tile-action>
-          <v-list-tile-title class="item-title">Login</v-list-tile-title>
+          <v-list-tile-name class="item-name">Login</v-list-tile-name>
         </v-list-tile>
       </v-list-group>
 
       <v-list-group prepend-icon="account_circle">
         <v-list-tile slot="activator">
-          <v-list-tile-title class="item-title">Users</v-list-tile-title>
+          <v-list-tile-name class="item-name">Users</v-list-tile-name>
         </v-list-tile>
         <v-list-tile
           v-for="(admin, i) in admins"
           :key="i"
-          @click="$router.push({ name: admin.routeName })"
+          @click="$router.push({ name: admin.path })"
         >
           <v-list-tile-action>
             <v-icon v-text="admin.icon"></v-icon>
           </v-list-tile-action>
-          <v-list-tile-title v-text="admin.title"></v-list-tile-title>
+          <v-list-tile-name v-text="admin.name"></v-list-tile-name>
         </v-list-tile>
       </v-list-group>
     </v-list>
@@ -112,25 +112,25 @@
         drawer: this.$store.state.app.sidebar,
         selectedIndex: 1,
         items: [
-          { title: 'Dashboard', icon: 'dashboard', routeName: 'Dashboard' },
-          { title: 'Tabs', icon: 'tab', routeName: 'Tabs' },
-          { title: 'Calendar', icon: 'calendar_today', routeName: '/admin/Calendar' },
-          { title: 'Mailbox', icon: 'inbox', routeName: 'Mailbox' },
-          { title: 'Widgets', icon: 'pageview', children: [
-            { title: 'Social', icon: 'group', routeName: 'Social' },
-            { title: 'Chart', icon: 'bar_chart', routeName: 'Chart' },
-            { title: 'Media', icon: 'perm_media', routeName: 'Media' }
+          { name: 'Dashboard', icon: 'dashboard', path: 'admin/Dashboard' },
+          { name: 'Tabs', icon: 'tab', path: 'Tabs' },
+          { name: 'Calendar', icon: 'calendar_today', path: '/admin/Calendar' },
+          { name: 'Mailbox', icon: 'inbox', path: '/admin/Mailbox' },
+          { name: 'Widgets', icon: 'pageview', children: [
+            { name: 'Social', icon: 'group', path: '/admin/Social' },
+            { name: 'Chart', icon: 'bar_chart', path: '/admin/Chart' },
+            { name: 'Media', icon: 'perm_media', path: '/admin/Media' }
           ] },
-          { title: 'Overlays', icon: 'select_all', children: [
-            { title: 'Snackbar', icon: 'event_note', routeName: 'Snackbar' }
+          { name: 'Overlays', icon: 'select_all', children: [
+            { name: 'Snackbar', icon: 'event_note', path: '/admin/Snackbar' }
           ] },
         ],
         admins: [
           {
-            title: 'Management', icon: 'people_outline', routeName: 'management'
+            name: 'Management', icon: 'people_outline', path: '/admin/management'
           },
           {
-            title: 'Settings', icon: 'settings', routeName: 'profile'
+            name: 'Settings', icon: 'settings', path: '/admin/profile'
           },
         ]
       }
@@ -148,13 +148,13 @@
           vm.$store.commit('app/sidebar', status);
         });
       },
-      changeRoute(routeName, selectedIndex) {
+      changeRoute(path, selectedIndex) {
         const vm = this;
 
         vm.selectedIndex = selectedIndex;
 
         return vm.$router.push({
-          name: routeName
+          name: path
         });
       }
     }
@@ -173,12 +173,12 @@
     text-decoration: none;
   }
 
-  .item-title {
+  .item-name {
     font-size: 17px;
     font-weight: 500;
   }
 
-  .item-sub-title {
+  .item-sub-name {
     font-size: 15px;
     font-weight: 500;
   }

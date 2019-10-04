@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[8],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["admin-Social"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/admin/Social.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\

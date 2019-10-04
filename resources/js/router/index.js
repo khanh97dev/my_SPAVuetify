@@ -6,6 +6,11 @@ import store from '~/store/index'
 import { api } from '~/config'
 const page = path => () => import(`~/pages/${path}`).then(m => m.default || m)
 
+// error 404
+routes.push({
+  path: '*',
+  redirect: 'Error404'
+})
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -42,7 +47,6 @@ router.beforeEach(async (to, from, next) => {
   //   next()
   // }
 });
-console.log(process.env)
 function setTitle(to){
   document.title = to.name ? to.name.replace('-', ' - ').toUpperCase() : process.env.APP_NAME;
 }

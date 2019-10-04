@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import LoginForm from '$comp/auth/login/LoginForm'
+  import LoginForm from './LoginForm'
   export default {
 
     components: {
@@ -62,7 +62,7 @@
         }
 
         if (vm.userEmail === vm.$root.userEmail && vm.password === vm.$root.userPassword) {
-          vm.$router.push({ name: 'Dashboard' });
+          vm.$router.push({ path: '/admin/Dashboard' });
         }
         else {
           vm.error = true;
@@ -74,7 +74,7 @@
       success(data) {
         this.$store.dispatch('auth/saveToken', data)
         this.$store.dispatch('auth/setUser', data)
-        this.$router.push({ name: 'Admin' })
+        this.$router.push({ path: '/admin' })
       }
     }
   }

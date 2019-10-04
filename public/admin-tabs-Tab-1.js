@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[10],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["admin-tabs-Tab-1"],{
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/admin/tabs/Tab-1.vue?vue&type=template&id=8e00639e&":
 /*!**************************************************************************************************************************************************************************************************************!*\

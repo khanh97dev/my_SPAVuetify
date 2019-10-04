@@ -15,7 +15,276 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-app", [_vm._v("\n    trang quan ly\n")])
+  return _c(
+    "div",
+    {
+      staticClass: "grey lighten-3",
+      staticStyle: { "max-width": "400px", margin: "auto" },
+      attrs: { id: "e3" }
+    },
+    [
+      _c(
+        "v-toolbar",
+        { attrs: { color: "pink", dark: "" } },
+        [
+          _c("v-toolbar-side-icon"),
+          _vm._v(" "),
+          _c("v-toolbar-title", [_vm._v("My Music")]),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            { attrs: { icon: "" } },
+            [_c("v-icon", [_vm._v("search")])],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-card",
+        [
+          _c(
+            "v-container",
+            { attrs: { fluid: "", "grid-list-lg": "" } },
+            [
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "white--text",
+                          attrs: { color: "blue-grey darken-2" }
+                        },
+                        [
+                          _c(
+                            "v-card-title",
+                            { attrs: { "primary-title": "" } },
+                            [
+                              _c("div", [
+                                _c("div", { staticClass: "headline" }, [
+                                  _vm._v("Unlimited music now")
+                                ]),
+                                _vm._v(" "),
+                                _c("span", [
+                                  _vm._v(
+                                    "Listen to your favorite artists and albums whenever and wherever, online and offline."
+                                  )
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-actions",
+                            [
+                              _c("v-btn", { attrs: { flat: "", dark: "" } }, [
+                                _vm._v("Listen now")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "white--text",
+                          attrs: { color: "cyan darken-2" }
+                        },
+                        [
+                          _c(
+                            "v-layout",
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { xs5: "" } },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
+                                      height: "125px",
+                                      contain: ""
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs7: "" } },
+                                [
+                                  _c(
+                                    "v-card-title",
+                                    { attrs: { "primary-title": "" } },
+                                    [
+                                      _c("div", [
+                                        _c("div", { staticClass: "headline" }, [
+                                          _vm._v("Supermodel")
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _vm._v("Foster the People")
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", [_vm._v("(2014)")])
+                                      ])
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("v-divider", { attrs: { light: "" } }),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-actions",
+                            { staticClass: "pa-3" },
+                            [
+                              _vm._v(
+                                "\n              Rate this album\n              "
+                              ),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("v-icon", [_vm._v("star_border")]),
+                              _vm._v(" "),
+                              _c("v-icon", [_vm._v("star_border")]),
+                              _vm._v(" "),
+                              _c("v-icon", [_vm._v("star_border")]),
+                              _vm._v(" "),
+                              _c("v-icon", [_vm._v("star_border")]),
+                              _vm._v(" "),
+                              _c("v-icon", [_vm._v("star_border")])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "white--text",
+                          attrs: { color: "purple" }
+                        },
+                        [
+                          _c(
+                            "v-layout",
+                            { attrs: { row: "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { xs7: "" } },
+                                [
+                                  _c(
+                                    "v-card-title",
+                                    { attrs: { "primary-title": "" } },
+                                    [
+                                      _c("div", [
+                                        _c("div", { staticClass: "headline" }, [
+                                          _vm._v("Halycon Days")
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", [_vm._v("Ellie Goulding")]),
+                                        _vm._v(" "),
+                                        _c("div", [_vm._v("(2013)")])
+                                      ])
+                                    ]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs5: "" } },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
+                                      height: "125px",
+                                      contain: ""
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("v-divider", { attrs: { light: "" } }),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-actions",
+                            { staticClass: "pa-3" },
+                            [
+                              _vm._v(
+                                "\n              Rate this album\n              "
+                              ),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("v-icon", [_vm._v("star_border")]),
+                              _vm._v(" "),
+                              _c("v-icon", [_vm._v("star_border")]),
+                              _vm._v(" "),
+                              _c("v-icon", [_vm._v("star_border")]),
+                              _vm._v(" "),
+                              _c("v-icon", [_vm._v("star_border")]),
+                              _vm._v(" "),
+                              _c("v-icon", [_vm._v("star_border")])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

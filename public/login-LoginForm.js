@@ -189,7 +189,7 @@ var render = function() {
               attrs: {
                 flat: "",
                 disabled: _vm.loading,
-                to: { name: "forgot", query: { email: _vm.form.email } },
+                to: { path: "/forgot", query: { email: _vm.form.email } },
                 color: "grey darken-2"
               }
             },

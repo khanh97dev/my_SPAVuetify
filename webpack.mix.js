@@ -12,7 +12,7 @@ const VueAutoRoutingPlugin = require('vue-auto-routing/lib/webpack-plugin');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .stylus('resources/stylus/app.styl', 'public/css');
+   .sass('resources/scss/app.scss', 'public/css');
 
 mix.webpackConfig(webpack => ({
     resolve: {
